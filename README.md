@@ -10,7 +10,7 @@ Project Structure
 We will try to avoid using JS, inside HTML. We will also try to seperate our Web-App in a frontend part and a backend part.
 Inside the README we will have a section that describes what the specific files are supposed to do / manage.
 
-What does file <name here> do?
+What does file name here do?
 ==============================
 
 [`frontend/index.html`](frontend/index.html)
@@ -53,4 +53,26 @@ Compile vue.js for deployment and publish dist directory
 cd frontend
 npm run build
 ```
+
+Adapted Code
+============
+In compliance with our task for this lecture we have to mark every piece of code that we adapted from other sources.
+
+[`frontend/index.html`](frontend/index.html)
+-----------------------
+[`Lines x-y`](https://stackoverflow.com/)
+[`Lines a-b`](https://stackoverflow.com/)
+
+
+Cloud
+=====
+As part of the lecture we also have to deploy our Web-App into a Cloud-Service of our choice.
+The [Link](www.google.com) will be provided here.
+
+Contributers
+============
+
+David Metzler Mat-Nr: 35582
+Niklas Kleiser Mat-Nr: 35579
+
 
