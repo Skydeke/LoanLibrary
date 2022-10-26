@@ -34,7 +34,7 @@ npm install
 
 Launch Servers
 ==============
-Launch the node.js Server
+Launch the node.js server
 
 ```
 cd backend
@@ -47,7 +47,7 @@ Launch the vue.js in testing mode
 cd frontend
 npm run serve
 ```
-Launch vue.js in deploment mode
+Compile vue.js for deployment and publish dist directory
 
 ```
 cd frontend
