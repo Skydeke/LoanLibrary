@@ -46,7 +46,6 @@ Launch the vue.js in testing mode
 ```
 cd frontend
 npm run serve
-
 ```
 Launch vue.js in deploment mode
 
@@ -55,4 +54,3 @@ cd frontend
 npm run build
 ```
 
-cd frontend
