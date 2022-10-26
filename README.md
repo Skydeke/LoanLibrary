@@ -38,7 +38,7 @@ Launch the node.js server
 
 ```
 cd backend
-node app.s
+node app.js
 ```
 
 Launch the vue.js in testing mode
