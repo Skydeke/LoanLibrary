@@ -72,7 +72,7 @@ The [Link](www.google.com) will be provided here.
 Contributers
 ============
 
-David Metzler Mat-Nr: 35582
-Niklas Kleiser Mat-Nr: 35579
+- David Metzler Mat-Nr: 35582
+- Niklas Kleiser Mat-Nr: 35579
 
 
