@@ -16,3 +16,43 @@ What does file <name here> do?
 [`frontend/index.html`](frontend/index.html)
 -----------------------
 This is the page you land on when opening the Website.
+
+Installation
+============
+```
+git clone https://github.com/Skydeke/LoanLibrary.git
+cd LoanLibary
+
+cd backend
+npm install
+
+cd ..
+
+cd frontend
+npm install
+```
+
+Launch Servers
+==============
+Launch the node.js Server
+
+```
+cd backend
+node app.s
+```
+
+Launch the vue.js in testing mode
+
+```
+cd frontend
+npm run serve
+
+```
+Launch vue.js in deploment mode
+
+```
+cd frontend
+npm run build
+```
+
+cd frontend
