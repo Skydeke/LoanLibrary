@@ -69,6 +69,24 @@ Cloud
 As part of the lecture we also have to deploy our Web-App into a Cloud-Service of our choice.
 The [Link](www.google.com) will be provided here.
 
+Docker
+======
+Launch Vue Container on Port 8080 on localhost
+```
+cd frontend
+docker build -t express .
+docker run -p 8080:8080 vue
+```
+Launch Node Container on Port 8081 on loclhost
+```
+cd backend
+docker build -t vue .
+docker run -p 8081:8080 express
+
+
+```
+
+
 Contributers
 ============
 
