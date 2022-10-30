@@ -3,10 +3,12 @@ services:
   frontend: 
     build: ./frontend
     ports:
-      - 8080:8080
+      - 80:80
+    image: xxfiestadeamonxx/loan-libary-frontend:firstImage
     depends_on:
       - backend
   backend: 
     build: ./backend
+    image: xxfiestadeamonxx/loan-libary-backend:firstImage
     ports:
       - 8081:8081

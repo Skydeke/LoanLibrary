@@ -10,7 +10,11 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 8080
+RUN npm run build
 
-
-CMD ["npm", "run", "serve"]
+#Nginx for azure pls
+#This is in deploment mode, because of nginx 
+FROM nginx:stable-alpine as production-stage
+COPY  ./dist /usr/share/nginx/html 
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

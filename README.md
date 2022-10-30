@@ -67,7 +67,7 @@ In compliance with our task for this lecture we have to mark every piece of code
 Cloud
 =====
 As part of the lecture we also have to deploy our Web-App into a Cloud-Service of our choice.
-The [Link](www.google.com) will be provided here.
+The [Link](https://grabo.azurewebsites.net/) will be provided here.
 
 Docker
 ======
@@ -77,6 +77,14 @@ Launch Vue Container on port 8080 on localhost and express Container on port 808
 docker-compose build
 docker compose up
 ```
+
+Docker Hub
+==========
+In odert to get the Docker Images on Azure we needed to push on the docker images for frontend and backend on docker hub. 
+
+The two image repositories are provided below.
+ [Link] https://hub.docker.com/repository/docker/xxfiestadeamonxx/loan-libary-frontend
+ [Link] https://hub.docker.com/repository/docker/xxfiestadeamonxx/loan-libary-backend
 
 
 Contributers
