@@ -1,7 +1,7 @@
-FROM node:16
+FROM node:16 as build-stage
 
 # Create app directory
-WORKDIR usr/src/app
+WORKDIR /usr/src/app
 
 #Install app dependencies
 COPY package*.json ./
@@ -12,9 +12,8 @@ COPY . .
 
 RUN npm run build
 
-#Nginx for azure pls
-#This is in deploment mode, because of nginx 
+#Nginx for azure
 FROM nginx:stable-alpine as production-stage
-COPY  ./dist /usr/share/nginx/html 
+COPY --from=build-stage /usr/src/app/dist /usr/share/nginx/html 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
