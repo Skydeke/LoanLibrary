@@ -17,7 +17,7 @@ export default {
       body: JSON.stringify({ title: "Vue POST Request Example" })
       };
 
-      fetch("http://localhost:8081/car", requestOptions)
+      fetch("/car", requestOptions)
       .then(response => response.json())
       .then(data => console.log(data));
     }
