@@ -126,13 +126,13 @@ insert into Ausstattung (AusstattungNr, Bezeichnung) values (2, 'UKW-Radio');
 insert into Ausstattung (AusstattungNr, Bezeichnung) values (3, 'Klimaanlage');
 commit;
 
-insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (0, 'B', 'Audi', 5, 150, 'Cabrio', 0.4, 'P', null, null, null, '/assets/car.jpg');
-insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (1, 'B', 'Mercedes', 5, 120, 'SUV', 0.6, 'P', null, null, null, '/assets/car.jpg');
-insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (2, 'B', 'VW', 5, 150, 'Cabrio', 0.4, 'P', null, null, null, '/assets/car.jpg');
+insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (0, 'B', 'Audi', 5, 150, 'Cabrio', 0.4, 'P', null, null, null, 'car.jpg');
+insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (1, 'B', 'Mercedes', 5, 120, 'SUV', 0.6, 'P', null, null, null, 'car.jpg');
+insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (2, 'B', 'VW', 5, 150, 'Cabrio', 0.4, 'P', null, null, null, 'car.jpg');
 
-insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (3, 'C', 'MAN', 3, 350, 'Muldenkipper', 0.2, 'L', 24, 3, 15000, '/assets/car2.jpg');
-insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (4, 'D', 'MAN', 3, 250, 'BUS', 0.3, 'L', 24, 3, 15000, '/assets/car2.jpg');
-insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (5, 'C', 'MAN', 3, 550, 'Schwanenhals', 0.2, 'L', 98, 3, 24000, '/assets/car2.jpg');
+insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (3, 'C', 'MAN', 3, 350, 'Muldenkipper', 0.2, 'L', 24, 3, 15000, 'car2.jpg');
+insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (4, 'D', 'MAN', 3, 250, 'BUS', 0.3, 'L', 24, 3, 15000, 'car2.jpg');
+insert into Automodell (AutomodellNr, Klassenbezeichnung, Hersteller, Sitzplaetze, PreisProTag, Typ, PreisProKm, Art, LadevolumenkubikMeter, Achsenzahl, LadegewichtKg, imagefile) values (5, 'C', 'MAN', 3, 550, 'Schwanenhals', 0.2, 'L', 98, 3, 24000, 'car2.jpg');
 commit;
 
 insert into ist_grundausstattung_bei (AutomodellNr, AusstattungNr) values (0, 0);

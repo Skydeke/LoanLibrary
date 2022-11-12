@@ -58,6 +58,15 @@ app.get('/automodell/:id', (req, res) => {
     });
 });
 
+app.get('/image/:path', (req, res) => {
+  let path =  req.params.path;
+  res.sendFile('/assets/' + path, { root: __dirname }, function (err) {
+    if (err) {
+      res.status(500).send("Oh uh, something went wrong on tha server. " + err);
+    }
+});
+});
+
 app.post('/login/', (req, res) => {
   let user =  req.body;
   let email = user.email;
