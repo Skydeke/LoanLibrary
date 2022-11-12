@@ -10,6 +10,7 @@ services:
   backend: 
     build: ./backend
     image: xxfiestadeamonxx/loan-libary-backend:firstImage
+    restart: always
     environment:
       - DB_HOST=database
       - DB_USER=root
