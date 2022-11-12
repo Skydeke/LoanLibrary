@@ -1,27 +1,30 @@
 <template>
-  <div class="classWrapper">
-    <h1> SUVs</h1>
-    <div class="carWrapper" v-for="car in suvs" :key="car">
-        <CarComponent :vehicle_name="car" :image_src="this.$hostname + '/image/car.jpg'"></CarComponent>
+  <div class="classWrapper" v-for="type in cars" :key="type.type">
+    <h1> {{type.type}}</h1>
+    <div class="carWrapper" v-for="car in type.values" :key="car.Hersteller">
+        <CarComponent :car="car"></CarComponent>
     </div>
+    <hr>
   </div>
-  <hr>
-  <div class="classWrapper">
-    <h1> Kleinwagen</h1>
-    <div class="carWrapper" v-for="car in compact_car" :key="car">
-        <CarComponent :vehicle_name="car" :image_src="this.$hostname + '/image/car2.jpg'"></CarComponent>
-    </div>
-  </div>
+ 
 </template>
 
 <script>
 import CarComponent from '../components/CarComponent.vue'
+import axios from 'axios'
+
 export default {
   name: 'homePage',
   components: {CarComponent},
   data (){
-      return { suvs:['Mercedes G Klasse','Subaru Crosstrek','Hyundai Kona','Ford Bronco Sport','Mazda CX-5','Hyundai Tucson','Kia Seltos','Ford Escape'],
-      compact_car:['Dacia Spring','Opel Mokka-e','Opel Corsa-e','Renault ZOE','Fiat 500 Elektro','Renault Twingo Electric','Dacia Sandero','Peugeot e-208']}
+      return {cars:[]}
+  },mounted(){
+      axios.get(this.$hostname + '/automodells')
+      .then(response =>{
+         this.cars = response.data;
+         console.log(response.data);
+      })
+      .catch(error => console.log(error))
   }		
 }
 </script>

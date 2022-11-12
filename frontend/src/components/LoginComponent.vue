@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'LoginComponent',
   data :()=>{
@@ -34,8 +35,15 @@ export default {
             this.errorEmail = true;
           }
         }else{
-          this.$store.commit('login') //mutates the isLogin state inside store
-          this.$router.push({name:'home'});
+          axios.post(this.$hostname+'/login',{'email':this.email,'password':this.password})
+          .then(()=>{
+            this.$store.commit('login') //mutates the isLogin state inside store
+            this.$router.push({name:'home'});
+          }).catch((error)=>{
+            if(error.response.status === 401) this.errorPassoword = true;
+            else window.alert("Someting went wrong!");
+          })
+      
         }
     },
     editMail(){

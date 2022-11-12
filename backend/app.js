@@ -26,7 +26,7 @@ database.connect(function(err) {
 app.use(express.json()); //parses incoming json requests
 
 app.use(cors({
-  origin: 'http://localhost' //enable cross-platform-source
+  origin: ['http://localhost','http://localhost:8080'] //enable cross-platform-source
 }));
 
 app.get('/automodells', (req, res) => {
@@ -38,7 +38,26 @@ app.get('/automodells', (req, res) => {
           res.status(500);
         }else{
           res.status(200);
-          res.json(result);
+          let types = []; //pre sort cars by type
+          let typeObj = [];
+          result.forEach(car => { //look which types exist in the database
+              if(types.indexOf(car.Typ)=== -1){ 
+                 types.push(car.Typ); //only add types which are not already in the array
+              }
+          });
+          for(let i=0; i < types.length; i++){
+            typeObj.push({type:types[i], values:[]}); //make  each type an object
+          }
+          result.forEach(car =>{
+
+            for(let i =0 ; i < types.length; i++){
+                if(car.Typ === types[i]){
+                  typeObj[i].values.push(JSON.parse(JSON.stringify(car)));
+                }
+            }
+            
+          })
+          res.send(JSON.stringify(typeObj));
         }
     });
 });

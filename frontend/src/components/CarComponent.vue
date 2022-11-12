@@ -1,12 +1,12 @@
 <template>
   <div @click="redirect">
-    <img :src="image_src" />
-    <h2> {{vehicle_name}}</h2>
+    <img :src="this.$hostname + '/image/' + car.imagefile" />
+    <h2> {{car.Hersteller}}</h2>
     <div class="container">
       <ul>
-        <li>Klimaanlage</li>
-        <li>Sitzheizung</li>
-        <li>5 Türer</li>
+        <li>{{car.Sitzplaetze}} Sitzplaetze</li>
+        <li>Führescheinklasse: {{car.Klassenbezeichnung}}</li>
+        <li>Preis pro Tag {{car.PreisProTag}} €</li>
       </ul>
   </div>
 </div>
@@ -17,10 +17,10 @@
 
 export default {
   name: 'CarComponent',
-  props:['vehicle_name','image_src'],
+  props:['car'],
   methods:{
       redirect(){
-        this.$router.push({name:'vehicle',params:{vehicle_name: this.vehicle_name}}); //redirect to vehicle with specific name. The attribute name refers to the name specified in router/index.js
+        this.$router.push({name:'vehicle',params:{id: this.car.AutomodellNr}}); //redirect to vehicle with specific name. The attribute name refers to the name specified in router/index.js
         //$router is a global varible
     }	
   }

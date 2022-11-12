@@ -1,5 +1,5 @@
 <template>
-    <h1> {{vehicle_name}}</h1>
+    <h1> {{id}}</h1>
 </template>
   
   <script>  
@@ -7,10 +7,10 @@
   export default {
     name: 'vehiclePage',
     data(){
-        return {vehicle_name:''}
+        return {id:''}
     },
     created(){
-        this.vehicle_name = this.$route.params.vehicle_name
+        this.id= this.$route.params.id
     }
   }
   </script>
