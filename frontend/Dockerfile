@@ -1,19 +1,22 @@
-FROM node:16 as build-stage
+FROM node:lts-alpine
 
-# Create app directory
-WORKDIR /usr/src/app
+# install simple http server for serving static content
+RUN npm install -g http-server
 
-#Install app dependencies
+# make the 'app' folder the current working directory
+WORKDIR /app
+
+# copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
+
+# install project dependencies
 RUN npm install
 
-# Bundle app source
+# copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
 
+# build app for production with minification
 RUN npm run build
 
-#Nginx for azure
-FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /usr/src/app/dist /usr/share/nginx/html 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 8080
+CMD [ "http-server", "dist" ]

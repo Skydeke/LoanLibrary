@@ -2,14 +2,14 @@
   <div class="classWrapper">
     <h1> SUVs</h1>
     <div class="carWrapper" v-for="car in suvs" :key="car">
-        <CarComponent :vehicle_name="car" :image_src="this.$hostname + '/assets/car.jpg'"></CarComponent>
+        <CarComponent :vehicle_name="car" :image_src="this.$hostname + '/image/car.jpg'"></CarComponent>
     </div>
   </div>
   <hr>
   <div class="classWrapper">
     <h1> Kleinwagen</h1>
     <div class="carWrapper" v-for="car in compact_car" :key="car">
-        <CarComponent :vehicle_name="car" :image_src="this.$hostname + '/assets/car2.jpg'"></CarComponent>
+        <CarComponent :vehicle_name="car" :image_src="this.$hostname + '/image/car2.jpg'"></CarComponent>
     </div>
   </div>
 </template>
