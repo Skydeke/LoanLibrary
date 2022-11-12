@@ -30,7 +30,8 @@ create table Kunde(
  PLZ varchar(5) not null,
  Land varchar(100),
  Strasse varchar(100) not null,
- HausNr integer not null);
+ HausNr integer not null,
+ Password varchar(50) not null);
 alter table Kunde add KundenNr integer not null;
 alter table Kunde add constraint pk_Kunde primary key (KundenNr);
 
@@ -165,9 +166,9 @@ commit;
 insert into ist_nachgeruestet_bei (Kennzeichen, AusstattungNr) values ('RV-FS-1225', 1);
 commit;
 
-insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr) values ('Niklas', 'Kleiser', 'Elias', 'Dortmund', 44339, 'Deutschland', 'Kappenberger Straße', 12, 'kleiser@rwu.de', 0);
-insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr) values ('Jonathan', 'Wekesser', null, 'Dortmund', 44339, 'Deutschland', 'Lothringer Straße', 4, 'j.wekesser@rwu.de', 1);
-insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr) values ('Anakin', 'Skywalker', 'Vader', 'Vaders castle', 35152, 'Deutschland', 'Mustafar Straße', 1, 'vader@imperium.org', 2);
+insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Niklas', 'Kleiser', 'Elias', 'Dortmund', 44339, 'Deutschland', 'Kappenberger Straße', 12, 'kleiser@rwu.de', 0, 'test123');
+insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Jonathan', 'Wekesser', null, 'Dortmund', 44339, 'Deutschland', 'Lothringer Straße', 4, 'j.wekesser@rwu.de', 1, 'test123');
+insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Anakin', 'Skywalker', 'Vader', 'Vaders castle', 35152, 'Deutschland', 'Mustafar Straße', 1, 'vader@imperium.org', 2, 'test123');
 commit;
 
 insert into besitzt (KundenNr, Klassenbezeichnung) values (0, 'D');

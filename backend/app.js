@@ -29,28 +29,54 @@ app.use(cors({
   origin: 'http://localhost' //enable cross-platform-source
 }));
 
-app.get('/', (req, res) => {
+app.get('/automodells', (req, res) => {
   const sqlQuery =  'Select * from Automodell;';
 
     database.query(sqlQuery, (err, result) => {
-        if (err)  console.log("Error: " + err);
-
-      res.send('Querry: ' + JSON.stringify(result));
+        if (err){
+          console.log("Error: " + err);
+          res.status(500);
+        }else{
+          res.status(200);
+          res.json(result);
+        }
     });
 });
 
-app.get('/assets/car.jpg', (req, res) => { //Images for testing purpose
-  res.sendFile('/assets/car.jpg',{ root: __dirname });
+app.get('/automodell/:id', (req, res) => {
+  let id =  req.params.id;
+  const sqlQuery =  `Select * from Automodell where AutomodellNr = ${id}`;
+
+    database.query(sqlQuery, (err, result) => {
+        if (err){
+          console.log("Error: " + err);
+          res.status(500);
+        }else{
+          res.status(200);
+          res.json(result[0]);
+        }
+    });
 });
 
-app.get('/assets/car2.jpg', (req, res) => {
-  res.sendFile('/assets/car2.jpg',{ root: __dirname });
-});
+app.post('/login/', (req, res) => {
+  let user =  req.body;
+  let email = user.email;
+  let password = user.password;
+  const sqlQuery =  `Select * from Kunde where EMail = "${email}" and Password = "${password}"`;
 
-app.post('/car', (req, res) => {
-  console.log(req.body);
-  res.status(200)
-  res.json({'msg':'success'});
+    database.query(sqlQuery, (err, result) => {
+        if (err){
+          console.log("Error: " + err);
+          res.status(500).send("Oh uh, something went wrong on tha server.");
+        }else{
+          let user = result[0];
+          if (user == undefined){
+            res.status(401).send("E-Mail or Password wrong.");
+          }else{
+            res.status(200).send("Login correct.");
+          }
+        }
+    });
 });
 
 app.listen(PORT, () => {
