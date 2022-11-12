@@ -17,7 +17,7 @@ let database = mysql.createConnection({
 
 database.connect(function(err) {
   if (err) {
-    return console.error('error: ' + err.message);
+    throw err;
   }
 
   console.log('Connected to the MySQL server.');
@@ -30,12 +30,12 @@ app.use(cors({
 }));
 
 app.get('/', (req, res) => {
-  const sqlQuery =  'CREATE TABLE Auto (Bezeichnung VARCHAR(50));';
+  const sqlQuery =  'Select * from Automodell;';
 
-    database.query(sqlQuery, (err) => {
-        if (err) throw err;
+    database.query(sqlQuery, (err, result) => {
+        if (err)  console.log("Error: " + err);
 
-    res.send('Table created!');
+      res.send('Querry: ' + JSON.stringify(result));
     });
 });
 
