@@ -1,17 +1,115 @@
 <template>
-  <h1> This is a Login</h1>
+<div class="container">
+  <img class="LoginImage" src="../assets/logo.png"/>
+  <h1>Wilkommen</h1>
+  <div  class="inputWrapper"> 
+      <input v-if="!enteredEmail"  type="email" placeholder="E-Mail eingeben" v-model="email"/> <!-- Two way binding--> 
+      <input v-if="enteredEmail"  type="email" placeholder="E-Mail eingeben" readonly="readonly" v-model="email"/> 
+      <button v-if="enteredEmail" class="editButton"  @click="editMail">Edit</button>
+  </div>
+  <div v-if="enteredEmail" class="inputWrapper">
+  <input   :type="passwordVisible?  'text' : 'password'" placeholder="Password eingeben" v-model="password"/>
+    <img  v-if="passwordVisible"  src="../assets/nonVisible.png"  class="visibleToggle" @click="visibleToggle"/>
+    <img  v-if="!passwordVisible" src="../assets/visible.png" class="visibleToggle" @click="visibleToggle"/>
+  </div>
+  <p v-if="errorEmail" class="errorMessage">Die E-Mail ist falsch </p>
+  <p v-if="errorPassoword" class="errorMessage">Das Passowrd ist falsch </p>
+  <button @click="login" class="loginButton">Login</button>
+</div>
 </template>
 
 <script>
 export default {
   name: 'LoginComponent',
   data :()=>{
-      return { name : "world"}
-  }		
+      return { email : '', password:'',enteredEmail:false, passwordVisible:false, errorEmail:false, errorPassoword:false};
+  },
+  methods:{
+    login(){
+        if(!this.enteredEmail){
+          if(this.isVailidMail(this. email)){
+            this.enteredEmail = true;
+            this.errorEmail =false;
+          }else{
+            this.errorEmail = true;
+          }
+        }else{
+          this.$store.commit('login') //mutates the isLogin state inside store
+          this.$router.push({name:'home'});
+        }
+    },
+    editMail(){
+      this.enteredEmail = false;
+    },
+    visibleToggle(){
+      this.passwordVisible = !this.passwordVisible;
+    },
+    isVailidMail(email){
+      return String(email)  //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+      .toLowerCase()
+      .match(
+       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+    }
+  }	
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+
+  .container{
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top: 15%;
+    width: 20%;
+    background-color: rgb(250, 244, 244);
+    border: 2px solid black;
+    border-radius: 15px;
+    text-align: center;
+  }
+  .loginImage{
+    width: 15%;
+    height: 15%;
+  }
+  input{
+    all: unset; /* Disable all input styles */
+    text-align: left;
+    width: 90%;
+    height: 30px;
+    margin-left: 5px;
+  }
+  .inputWrapper{
+    border: 2px solid black;
+    background-color: white;
+    width: 80%;
+    height: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .visibleToggle{
+    width: 25px;
+    height: 25px;
+    padding-right: 5px;
+  }
+  .editButton{
+      background-color: white;
+      border: none;
+  }
+  .loginButton{
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 20%;
+    height: 10%;
+  }
+  .errorMessage{
+    color: red;
+  }
 </style>

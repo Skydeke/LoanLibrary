@@ -1,6 +1,6 @@
 <template>
   <div>
-      <NaviagitonBar></NaviagitonBar>
+    <NaviagitonBar></NaviagitonBar>
    <router-view />
   </div>
 </template>
@@ -16,5 +16,6 @@ export default {
 </script>
 
 <style>
+  body { margin: 0};
 
 </style>

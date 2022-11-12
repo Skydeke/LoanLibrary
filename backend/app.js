@@ -39,6 +39,14 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/assets/car.jpg', (req, res) => { //Images for testing purpose
+  res.sendFile('/assets/car.jpg',{ root: __dirname });
+});
+
+app.get('/assets/car2.jpg', (req, res) => {
+  res.sendFile('/assets/car2.jpg',{ root: __dirname });
+});
+
 app.post('/car', (req, res) => {
   console.log(req.body);
   res.status(200)

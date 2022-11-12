@@ -3,7 +3,9 @@
     <img src="../assets/logo.png"/>
     <div>   
      <router-link to="/">Home</router-link>
-     <router-link to="/login">Login</router-link>
+     <router-link v-if="!isLogedIn" to="/login">Login</router-link>
+     <router-link v-if="isLogedIn" @click="logout" to="">Logout</router-link>
+
     </div>
 
   </nav>
@@ -12,6 +14,15 @@
 <script>
 export default {
   name: 'NaviagitonBar',
+  computed:{ //computed property always executes, when our values change, the values gets chaced until it is changed
+      isLogedIn(){
+        return this.$store.getters.isLogedIn;
+      }
+  },methods:{
+    logout(){
+      this.$store.commit('logout');
+    }
+  }
 }
 </script>
 
