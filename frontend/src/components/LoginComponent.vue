@@ -35,19 +35,24 @@ export default {
             this.errorEmail = true;
           }
         }else{
-          axios.post(this.$hostname+'/login',{'email':this.email,'password':this.password})
-          .then(()=>{
-            this.$store.commit('login') //mutates the isLogin state inside store
-            this.$router.push({name:'home'});
-          }).catch((error)=>{
-            if(error.response.status === 401) this.errorPassoword = true;
-            else window.alert("Someting went wrong!");
-          })
-      
+          if(this.password){
+            axios.post(this.$hostname+'/login',{'email':this.email,'password':this.password})
+            .then((response)=>{
+              localStorage.setItem('token',response.data.token);
+              this.$store.commit('login'); //mutates the isLogin state inside store
+              this.$router.push({name:'home'});
+            }).catch((error)=>{
+              if(error.response.status === 401) this.errorPassoword = true;
+              else window.alert("Someting went wrong!");
+            })
+          }else{
+            this.errorPassoword = true;
+          }
         }
     },
     editMail(){
       this.enteredEmail = false;
+      this.password = '';
     },
     visibleToggle(){
       this.passwordVisible = !this.passwordVisible;

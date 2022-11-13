@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 
 require("dotenv").config(); //load environment variables
@@ -28,6 +29,27 @@ app.use(express.json()); //parses incoming json requests
 app.use(cors({
   origin: ['http://localhost','http://localhost:8080'] //enable cross-platform-source
 }));
+
+function verifyToken(req, res, next){ //middleware function
+  const token = req.headers.authorization;
+  if(token  !== undefined){
+      console.log(token)
+      req.token = token;
+      next();
+  }else{
+    res.sendStatus(403); //Acces forbidden
+  }
+}
+
+app.get('/reservation',verifyToken, (req,res)=>{ //usem middleware function
+try {
+  console.log(req.token);
+  var decoded = jwt.verify(req.token, 'secret'); //do something with the token, user is authenticated
+  res.json(decoded);
+} catch(err) {
+  res.sendStatus(403); //Acces forbidden
+}
+})
 
 app.get('/automodells', (req, res) => {
   const sqlQuery =  'Select * from Automodell;';
@@ -101,7 +123,12 @@ app.post('/login/', (req, res) => {
           if (user == undefined){
             res.status(401).send("E-Mail or Password wrong.");
           }else{
-            res.status(200).send("Login correct.");
+            const token = jwt.sign({
+              'email': email
+            }, 'secret', { expiresIn: '1h' });
+          
+            res.json({'token':token})
+          
           }
         }
     });
