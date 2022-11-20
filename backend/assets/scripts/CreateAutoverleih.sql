@@ -104,7 +104,7 @@ alter table Reservierung add constraint fk_Reserv_Kunde foreign key (KundenNr) r
 alter table Reservierung add AusleihvorgangNr integer;
 alter table Reservierung add constraint fk_Reserv_Ausl foreign key (AusleihvorgangNr) references Ausleihvorgang (AusleihvorgangNr);
 
-alter table Ausleihvorgang add Kennzeichen varchar(8);
+alter table Ausleihvorgang add Kennzeichen varchar(15);
 alter table Ausleihvorgang add constraint fk_Ausl_Autoex foreign key (Kennzeichen) references Autoexemplar (Kennzeichen);
 
 alter table Rechnung add AusleihvorgangNr integer;
@@ -177,10 +177,10 @@ insert into besitzt (KundenNr, Klassenbezeichnung) values (2, 'C');
 insert into besitzt (KundenNr, Klassenbezeichnung) values (1, 'B');
 commit;
 
-insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr) values (STR_TO_DATE('2022-10-12 12:00:30','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-10-19 11:50:00','%Y-%m-%d %H:%i:%s'), 168393, 168792, 0);
-insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr) values (STR_TO_DATE('2022-09-26 09:01:00','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-09-26 10:03:00','%Y-%m-%d %H:%i:%s'), 160342, 160382, 1);
-insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr) values (STR_TO_DATE('2022-08-15 12:07:13','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-08-15 18:05:43','%Y-%m-%d %H:%i:%s'), 80342, 80412, 2);
-insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr) values (STR_TO_DATE('2022-10-12 15:13:20','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-10-19 15:11:23','%Y-%m-%d %H:%i:%s'), 4232, 5121, 3); 
+insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr, Kennzeichen) values (STR_TO_DATE('2022-10-12 12:00:30','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-10-19 11:50:00','%Y-%m-%d %H:%i:%s'), 168393, 168792, 0, 'RV-SW-7223');
+insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr, Kennzeichen) values (STR_TO_DATE('2022-09-26 09:01:00','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-09-26 10:03:00','%Y-%m-%d %H:%i:%s'), 160342, 160382, 1, 'RW-PA-2893');
+insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr, Kennzeichen) values (STR_TO_DATE('2022-08-15 12:07:13','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-08-15 18:05:43','%Y-%m-%d %H:%i:%s'), 80342, 80412, 2, 'RV-KA-789');
+insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr, Kennzeichen) values (STR_TO_DATE('2022-10-12 15:13:20','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-10-19 15:11:23','%Y-%m-%d %H:%i:%s'), 4232, 5121, 3, 'RV-FS-1225'); 
 commit;
 
 insert into Rechnung (Summe, Beglichen, RechNr, AusleihvorgangNr) values (1849.7 , 't', 0, 0);
