@@ -31,7 +31,7 @@ create table Kunde(
  Land varchar(100),
  Strasse varchar(100) not null,
  HausNr integer not null,
- Password varchar(50) not null);
+ Password varchar(100) not null);
 alter table Kunde add KundenNr integer not null;
 alter table Kunde add constraint pk_Kunde primary key (KundenNr);
 
@@ -166,9 +166,9 @@ commit;
 insert into ist_nachgeruestet_bei (Kennzeichen, AusstattungNr) values ('RV-FS-1225', 1);
 commit;
 
-insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Niklas', 'Kleiser', 'Elias', 'Dortmund', 44339, 'Deutschland', 'Kappenberger Straße', 12, 'kleiser@rwu.de', 0, 'test123');
-insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Jonathan', 'Wekesser', null, 'Dortmund', 44339, 'Deutschland', 'Lothringer Straße', 4, 'j.wekesser@rwu.de', 1, 'test123');
-insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Anakin', 'Skywalker', 'Vader', 'Vaders castle', 35152, 'Deutschland', 'Mustafar Straße', 1, 'vader@imperium.org', 2, 'test123');
+insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Niklas', 'Kleiser', 'Elias', 'Dortmund', 44339, 'Deutschland', 'Kappenberger Straße', 12, 'kleiser@rwu.de', 0, '$2b$10$ep2M23jH4At5ilLlDhuhUuGP27/T19QeeQt04L1hoBP.qo1kgitYy');
+insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Jonathan', 'Wekesser', null, 'Dortmund', 44339, 'Deutschland', 'Lothringer Straße', 4, 'j.wekesser@rwu.de', 1, '$2b$10$ep2M23jH4At5ilLlDhuhUuGP27/T19QeeQt04L1hoBP.qo1kgitYy');
+insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Anakin', 'Skywalker', 'Vader', 'Vaders castle', 35152, 'Deutschland', 'Mustafar Straße', 1, 'vader@imperium.org', 2, '$2b$10$ep2M23jH4At5ilLlDhuhUuGP27/T19QeeQt04L1hoBP.qo1kgitYy');
 commit;
 
 insert into besitzt (KundenNr, Klassenbezeichnung) values (0, 'D');

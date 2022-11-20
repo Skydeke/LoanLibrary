@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-
+const bcrypt = require('bcrypt');
 
 require("dotenv").config(); //load environment variables
 
@@ -112,8 +112,7 @@ app.post('/login/', (req, res) => {
   let user =  req.body;
   let email = user.email;
   let password = user.password;
-  const sqlQuery =  `Select * from Kunde where EMail = "${email}" and Password = "${password}"`;
-
+  const sqlQuery =  `Select * from Kunde where EMail = "${email}"`;
     database.query(sqlQuery, (err, result) => {
         if (err){
           console.log("Error: " + err);
@@ -123,12 +122,17 @@ app.post('/login/', (req, res) => {
           if (user == undefined){
             res.status(401).send("E-Mail or Password wrong.");
           }else{
-            const token = jwt.sign({
-              'email': email
-            }, 'secret', { expiresIn: '1h' });
-          
-            res.json({'token':token})
-          
+            bcrypt.compare(password, user.Password, function(err, result) {
+              if(result){
+                const token = jwt.sign({
+                  'email': email
+                }, 'secret', { expiresIn: '1h' });
+              
+                res.json({'token':token})
+              }else{
+                res.status(401).send("E-Mail or Password wrong.");
+              }
+          });
           }
         }
     });
