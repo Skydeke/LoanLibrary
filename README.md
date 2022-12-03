@@ -91,5 +91,7 @@ Contributers
 
 Images and Data for DB
 ======================
-[Link](https://www.autobild.de/marken-modelle/)
+Information and pictures of cars: [Link](https://www.autobild.de/marken-modelle/)
+
+All users in our Database have the set Password "test123"
 
