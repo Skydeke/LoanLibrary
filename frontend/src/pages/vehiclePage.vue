@@ -63,6 +63,8 @@ export default {
 #resCont {
   margin: 20px;
 }
-
+#reserveBtn {
+  width: 100%;
+}
 </style>
   

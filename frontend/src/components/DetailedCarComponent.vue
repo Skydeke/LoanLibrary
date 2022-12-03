@@ -41,7 +41,7 @@
         </tr>
       </table>
     </div>
-    <div id="resCont">
+    <div id="cont">
       <h2>Grundausstattung</h2>
       <p>
         In diesem Automodell sind beim Ausleihen mindestens verbaut:
@@ -83,11 +83,7 @@ h1 {
   display: inline-block;
 }
 
-#resCont {
+#cont {
   margin-top: 50px;
-}
-
-#reserveBtn {
-  width: 100%;
 }
 </style>
