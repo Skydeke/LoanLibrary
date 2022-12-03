@@ -1,7 +1,7 @@
 <template>
   <div @click="redirect">
     <img :src="this.$hostname + '/image/' + car.imagefile" />
-    <h2> {{car.Hersteller}}</h2>
+    <h2> {{car.Hersteller}} {{car.Modellbezeichnung}}</h2>
     <div class="container">
       <ul>
         <li>{{car.Sitzplaetze}} Sitzplaetze</li>
