@@ -3,12 +3,12 @@
   <img class="LoginImage" src="../assets/logo.png"/>
   <h1>Wilkommen</h1>
   <div  class="inputWrapper"> 
-      <input v-if="!enteredEmail"  type="email" placeholder="E-Mail eingeben" v-model="email"/> <!-- Two way binding--> 
+      <input v-if="!enteredEmail"  type="email" placeholder="E-Mail eingeben" @keydown="keyDown"  v-model="email"/> <!-- Two way binding--> 
       <input v-if="enteredEmail"  type="email" placeholder="E-Mail eingeben" readonly="readonly" v-model="email"/> 
       <button v-if="enteredEmail" class="editButton"  @click="editMail">Edit</button>
   </div>
   <div v-if="enteredEmail" class="inputWrapper">
-  <input   :type="passwordVisible?  'text' : 'password'" placeholder="Password eingeben" v-model="password"/>
+  <input   :type="passwordVisible?  'text' : 'password'" placeholder="Password eingeben"  @keydown="keyDown"  v-model="password"/>
     <img  v-if="passwordVisible"  src="../assets/nonVisible.png"  class="visibleToggle" @click="visibleToggle"/>
     <img  v-if="!passwordVisible" src="../assets/visible.png" class="visibleToggle" @click="visibleToggle"/>
   </div>
@@ -63,6 +63,10 @@ export default {
       .match(
        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
+    },keyDown(event){
+        if(event.keyCode ===13){ //handle enter press
+          this.login();
+        }
     }
   }	
 }
@@ -73,9 +77,10 @@ export default {
 
 
   .container{
-    margin-left: 40%;
-    margin-right: 40%;
-    margin-top: 15%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 20%;
     background-color: rgb(250, 244, 244);
     border: 2px solid black;
