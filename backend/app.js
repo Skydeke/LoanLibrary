@@ -99,6 +99,21 @@ app.get('/automodell/:id', (req, res) => {
     });
 });
 
+app.get('/automodell/ausstattungen/:id', (req, res) => {
+  let id =  req.params.id;
+  const sqlQuery =  `Select aus.Bezeichnung, aus.AusstattungNr from Ausstattung aus, Automodell a, ist_grundausstattung_bei gr where a.AutomodellNr = ${id} and a.AutomodellNr = gr.AutomodellNr and gr.AusstattungNr = aus.AusstattungNr`;
+
+  database.query(sqlQuery, (err, result) => {
+    if (err){
+      console.log("Error: " + err);
+      res.status(500);
+    }else{
+      res.status(200);
+      res.json(result);
+    }
+  });
+});
+
 app.get('/image/:path', (req, res) => {
   let path =  req.params.path;
   res.sendFile('/assets/' + path, { root: __dirname }, function (err) {
@@ -119,7 +134,7 @@ app.post('/login/', (req, res) => {
           res.status(500).send("Oh uh, something went wrong on tha server.");
         }else{
           let user = result[0];
-          if (user == undefined){
+          if (user === undefined){
             res.status(401).send("E-Mail or Password wrong.");
           }else{
             bcrypt.compare(password, user.Password, function(err, result) {
