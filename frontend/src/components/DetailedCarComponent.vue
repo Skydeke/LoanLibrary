@@ -50,23 +50,6 @@
         <li v-for="ausst in carmod.ausstattung" :key="ausst.AusleihNr"> {{ ausst.Bezeichnung }}</li>
       </ul>
     </div>
-    <div id="resCont">
-      <h2>Reservierung</h2>
-      <p>
-        Bei unserem Autoverleih ist es nicht möglich ein konkretes Auto zu reservieren, aber man kann ein
-        Automodell für ein bestimmten Zeitraum reservieren. Eine Reservierung ist kostenlos und muss nicht zwangsläufig
-        zu einem Leihvertrag führen.
-        <br>
-        Um ein Auto dieses Autoexemplars für einen Zeitraum freizuhalten gib das Startdatum:
-        <input type="date" placeholder="Startdatum" v-model="startdate"/>
-        <input type="time" placeholder="Startzeit" v-model="starttime"/>
-        und das Enddatum:
-        <input type="date" placeholder="Enddatum" v-model="enddate"/>
-        <input type="time" placeholder="Endzeit" v-model="endtime"/>
-        ein.
-      </p>
-      <button id="reserveBtn" @click="reserve">Reservieren</button>
-    </div>
   </div>
 </template>
 
@@ -74,24 +57,9 @@
 export default {
   name: 'DetailedCarComponent',
   props: ['carmod'],
-  methods: {
-    reserve() {
-      if (!this.isLogedIn()){
-        this.$router.push({name:'login'});
-      }else {
-        if (this.endtime !== undefined && this.enddate !== undefined && this.starttime !== undefined && this.startdate !== undefined){
-          console.log("Creating Reservierung on " + this.startdate + " " +this.starttime + " until " + this.enddate + " " + this.endtime)
-        }else{
-          console.log("Not all Info Present to create Reservierung.")
-        }
-      }
-    },
-    isLogedIn(){
-      return this.$store.getters.isLogedIn;
-    }
-  },
+  methods: {},
   data: function () {
-    return {starttime: undefined, endtime: undefined, startdate: undefined, enddate: undefined}
+    return {}
   }
 }
 
