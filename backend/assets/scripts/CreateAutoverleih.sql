@@ -204,7 +204,15 @@ insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, A
 insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-JW-729', 68393, STR_TO_DATE('2022-06-14','%Y-%m-%d'), STR_TO_DATE('2019-04-15', '%Y-%m-%d'), 3);
 insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-FS-1234', 4232, STR_TO_DATE('2022-06-15','%Y-%m-%d'), STR_TO_DATE('2022-04-04', '%Y-%m-%d'), 4);
 insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-SW-7223', 168393, STR_TO_DATE('2022-06-14','%Y-%m-%d'), STR_TO_DATE('2016-03-15', '%Y-%m-%d'), 5);
-insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-FS-1225', 42328, STR_TO_DATE('2022-06-15','%Y-%m-%d'), STR_TO_DATE('2021-02-04', '%Y-%m-%d'), 6);
+insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-FS-253', 4228, STR_TO_DATE('2022-06-15','%Y-%m-%d'), STR_TO_DATE('2021-02-04', '%Y-%m-%d'), 6);
+insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-HJ-7632', 328, STR_TO_DATE('2022-06-15','%Y-%m-%d'), STR_TO_DATE('2021-02-04', '%Y-%m-%d'), 7);
+insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-AV-7225', 2328, STR_TO_DATE('2022-06-16','%Y-%m-%d'), STR_TO_DATE('2021-02-04', '%Y-%m-%d'), 8);
+insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-NM-1425', 4321, STR_TO_DATE('2022-06-16','%Y-%m-%d'), STR_TO_DATE('2021-02-04', '%Y-%m-%d'), 9);
+insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-LK-1225', 548, STR_TO_DATE('2022-06-15','%Y-%m-%d'), STR_TO_DATE('2021-02-04', '%Y-%m-%d'), 10);
+insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-SA-225', 3238, STR_TO_DATE('2022-06-17','%Y-%m-%d'), STR_TO_DATE('2021-02-04', '%Y-%m-%d'), 11);
+insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-UF-5625', 34428, STR_TO_DATE('2022-06-17','%Y-%m-%d'), STR_TO_DATE('2021-02-04', '%Y-%m-%d'), 12);
+insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-QT-4325', 45428, STR_TO_DATE('2022-06-19','%Y-%m-%d'), STR_TO_DATE('2021-02-04', '%Y-%m-%d'), 13);
+insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-CA-1875', 74328, STR_TO_DATE('2022-06-19','%Y-%m-%d'), STR_TO_DATE('2021-02-04', '%Y-%m-%d'), 14);
 commit;
 
 insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Niklas', 'Kleiser', 'Elias', 'Dortmund', 44339, 'Deutschland', 'Kappenberger Straße', 12, 'kleiser@rwu.de', 1, '$2b$10$ep2M23jH4At5ilLlDhuhUuGP27/T19QeeQt04L1hoBP.qo1kgitYy');
