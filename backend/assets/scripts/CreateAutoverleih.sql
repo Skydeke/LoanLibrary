@@ -215,9 +215,9 @@ insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, A
 insert into Autoexemplar (Kennzeichen, Kilometerstand, LetzterTUEV, Kaufdatum, AutomodellNr) values ('RV-CA-1875', 74328, STR_TO_DATE('2022-06-19','%Y-%m-%d'), STR_TO_DATE('2021-02-04', '%Y-%m-%d'), 14);
 commit;
 
-insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Niklas', 'Kleiser', 'Elias', 'Dortmund', 44339, 'Deutschland', 'Kappenberger Straße', 12, 'kleiser@rwu.de', 1, '$2b$10$ep2M23jH4At5ilLlDhuhUuGP27/T19QeeQt04L1hoBP.qo1kgitYy');
-insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Jonathan', 'Wekesser', null, 'Dortmund', 44339, 'Deutschland', 'Lothringer Straße', 4, 'j.wekesser@rwu.de', 2, '$2b$10$ep2M23jH4At5ilLlDhuhUuGP27/T19QeeQt04L1hoBP.qo1kgitYy');
-insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, KundenNr, Password) values ('Anakin', 'Skywalker', 'Vader', 'Vaders castle', 35152, 'Deutschland', 'Mustafar Straße', 1, 'vader@imperium.org', 3, '$2b$10$ep2M23jH4At5ilLlDhuhUuGP27/T19QeeQt04L1hoBP.qo1kgitYy');
+insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail,  Password) values ('Niklas', 'Kleiser', 'Elias', 'Dortmund', 44339, 'Deutschland', 'Kappenberger Straße', 12, 'kleiser@rwu.de', '$2b$10$ep2M23jH4At5ilLlDhuhUuGP27/T19QeeQt04L1hoBP.qo1kgitYy');
+insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, Password) values ('Jonathan', 'Wekesser', null, 'Dortmund', 44339, 'Deutschland', 'Lothringer Straße', 4, 'j.wekesser@rwu.de', '$2b$10$ep2M23jH4At5ilLlDhuhUuGP27/T19QeeQt04L1hoBP.qo1kgitYy');
+insert into Kunde (Vorname, Nachname, ZweiterVorname, Ort, PLZ, Land, Strasse, HausNr, EMail, Password) values ('Anakin', 'Skywalker', 'Vader', 'Vaders castle', 35152, 'Deutschland', 'Mustafar Straße', 1, 'vader@imperium.org',  '$2b$10$ep2M23jH4At5ilLlDhuhUuGP27/T19QeeQt04L1hoBP.qo1kgitYy');
 commit;
 
 insert into besitzt (KundenNr, Klassenbezeichnung) values (1, 'D');

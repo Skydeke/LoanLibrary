@@ -1,10 +1,15 @@
 <template>
   <nav>
+    <div class="container">
     <img @click="goHome" src="../assets/logo.png"/>
 
     <router-link id="homeText" to="/">Home</router-link>
-    <router-link class="logText" v-if="!isLogedIn" to="/login">Login</router-link>
-    <router-link class="logText" v-if="isLogedIn" @click="logout" to="">Logout</router-link>
+    <div class="linkWrapper">
+      <router-link  v-if="!isLogedIn" to="/login">Login</router-link>
+      <router-link  v-if="!isLogedIn" to="/signup">SignUp</router-link>
+      <router-link class="logText" v-if="isLogedIn" @click="logout" to="">Logout</router-link>
+    </div>
+  </div>
   </nav>
 </template>
 
@@ -30,6 +35,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 nav {
+  display: sticky;
+}
+
+.container{
   display: flex;
   justify-content: space-between;
   background-color: aliceblue;
@@ -37,7 +46,10 @@ nav {
   width: 100%;
   top: 0;
 }
-
+.linkWrapper{
+  margin-top: auto;
+  margin-bottom: auto;
+}
 img {
   height: 3%;
   width: 3%;
@@ -51,14 +63,6 @@ a { /*sytles router-lin*/
   margin-bottom: auto;
 }
 
-.logText {
-  margin-right: 30px;
-}
 
-#homeText {
-  position: sticky;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-}
+
 </style>

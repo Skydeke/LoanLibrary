@@ -84,6 +84,24 @@ app.get('/automodells', (req, res) => {
     });
 });
 
+app.post('/registration',(req,res)=>{
+  let user =  req.body;
+  let encryptedPassword = bcrypt.hashSync(user.password, 10);
+  const sqlQuery =  `insert into Kunde (Vorname,  ZweiterVorname, Nachname, Ort, PLZ, Land, Strasse, HausNr, EMail,  Password) values ('${user.firstName}', '${user.secondName}', '${user.lastName}', '${user.location}', ${user.plz}, 'Deutschland', '${user.street}', ${user.houseNumber}, '${user.email}', '${encryptedPassword}');`;
+  database.query(sqlQuery,(err, result) =>{ //get the last KundenNummer
+    if (err){
+      res.status(500).send("Oh uh, something went wrong on tha server.");
+    }else{
+      const token = jwt.sign({
+        'id': result.insertId
+      }, 'secret', { expiresIn: '1h' });
+      res.json({'token':token});
+    }
+  })
+
+
+})
+
 app.get('/automodell/:id', (req, res) => {
   let id =  req.params.id;
   const sqlQuery =  `Select * from Automodell where AutomodellNr = ${id}`;

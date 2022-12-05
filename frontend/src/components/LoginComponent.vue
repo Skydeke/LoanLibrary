@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <img class="LoginImage" src="../assets/logo.png"/>
+  <img class="loginImage" src="../assets/logo.png"/>
   <h1>Wilkommen</h1>
   <div  class="inputWrapper"> 
       <input v-if="!enteredEmail"  type="email" placeholder="E-Mail eingeben" @keydown="keyDown"  v-model="email"/> <!-- Two way binding--> 
@@ -88,8 +88,8 @@ export default {
     text-align: center;
   }
   .loginImage{
-    width: 15%;
-    height: 15%;
+    width: 60%;
+    height: 60%;
   }
   input{
     all: unset; /* Disable all input styles */
