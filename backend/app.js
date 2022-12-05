@@ -159,7 +159,10 @@ app.post('/login/', (req, res) => {
               if(result){
                 const token = jwt.sign({
                   'email': email,
-                  'KundenNr': user.KundenNr
+                  'KundenNr': user.KundenNr,
+                  'Vorname': user.Vorname,
+                  'Nachname': user.Nachname,
+                  'ZweiterVorname': user.ZweiterVorname
                 }, 'secret', { expiresIn: '1h' });
               
                 res.json({'token':token})

@@ -6,7 +6,6 @@
     </div>
     <hr>
   </div>
- 
 </template>
 
 <script>

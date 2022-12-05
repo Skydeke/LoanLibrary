@@ -20,6 +20,7 @@
 
 <script>
 import axios from 'axios'
+import { LOCALSTORAGE_INSTANCE } from "@/services/localstorage.service.js";
 export default {
   name: 'LoginComponent',
   data :()=>{
@@ -38,7 +39,7 @@ export default {
           if(this.password){
             axios.post(this.$hostname+'/login',{'email':this.email,'password':this.password})
             .then((response)=>{
-              localStorage.setItem('token',response.data.token);
+              LOCALSTORAGE_INSTANCE.writeAuth(response.data.token);
               this.$store.commit('login'); //mutates the isLogin state inside store
               this.$router.push({name:'home'});
             }).catch((error)=>{
