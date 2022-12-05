@@ -158,7 +158,8 @@ app.post('/login/', (req, res) => {
             bcrypt.compare(password, user.Password, function(err, result) {
               if(result){
                 const token = jwt.sign({
-                  'email': email
+                  'email': email,
+                  'KundenNr': user.KundenNr
                 }, 'secret', { expiresIn: '1h' });
               
                 res.json({'token':token})
