@@ -93,8 +93,12 @@ app.post('/registration',(req,res)=>{
       res.status(500).send("Oh uh, something went wrong on tha server.");
     }else{
       const token = jwt.sign({
-        'id': result.insertId
-      }, 'secret', { expiresIn: '1h' });
+                  'email': user.email,
+                  'KundenNr': result.insertId,
+                  'Vorname': user.firstName,
+                  'Nachname': user.lastName,
+                  'ZweiterVorname': user.secondName
+                }, 'secret', { expiresIn: '1h' });
       res.json({'token':token});
     }
   })

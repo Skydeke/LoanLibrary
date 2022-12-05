@@ -70,7 +70,7 @@
     
     <script>
     import axios from 'axios'
-
+    import { LOCALSTORAGE_INSTANCE } from "@/services/localstorage.service.js";
     const zxcvbn = require('zxcvbn'); //libary to validate password strength
 
     export default {
@@ -137,7 +137,7 @@
             }
             axios.post(this.$hostname+'/registration',this.user)
             .then((response)=>{
-              localStorage.setItem('token',response.data.token);
+              LOCALSTORAGE_INSTANCE.writeAuth(response.data.token);
               this.$store.commit('login'); //mutates the isLogin state inside store
               this.$router.push({name:'home'});
             }).catch((error)=>{
@@ -147,7 +147,7 @@
 
         },
         isValidPLZ(plz){
-            return plz>1000 && plz <10000;
+            return plz>10000 && plz <100000;
         },
         editMail(){
           this.enteredEmail = false;

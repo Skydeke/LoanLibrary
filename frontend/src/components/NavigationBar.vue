@@ -1,22 +1,22 @@
 <template>
   <nav>
     <img @click="goHome" src="../assets/logo.png"/>
-
     <router-link id="homeText" to="/">Home</router-link>
     <div class="right">
-      <div>
+      <div class="container">
         <img @click="triggerMenu" v-if="isLogedIn" v-bind:src="'https://ui-avatars.com/api/?name=' + encodedName"
              id="customerProfile" alt="ProfilePicture"/>
-        <router-link class="right" v-if="!isLogedIn" to="/login">Login</router-link>
       </div>
-    </div>
-    <menu class="customerMenu" v-if="openMenu&&isLogedIn">
+      <router-link class="right" v-if="!isLogedIn" to="/login">Login</router-link>
+      <router-link class="right" v-if="!isLogedIn" to="/signup">Registrieren</router-link>
+      <menu class="customerMenu" v-if="openMenu&&isLogedIn">
       <li><a>Meine Reservierungen</a></li>
       <li><a>Meine Rechnungen</a></li>
       <li>
         <router-link @click="logout" to="">Logout</router-link>
       </li>
     </menu>
+  </div>
   </nav>
 </template>
 
@@ -70,6 +70,7 @@ nav {
   background-color: aliceblue;
   position: sticky;
   width: 100%;
+  height: 10%;
   top: 0;
 }
 
@@ -86,11 +87,8 @@ a { /*sytles router-lin*/
   margin-bottom: auto;
 }
 
-#homeText {
-  position: sticky;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
+.container{
+  height: 100%;
 }
 
 .right {
@@ -99,8 +97,15 @@ a { /*sytles router-lin*/
   margin-bottom: auto;
   margin-right: 10px;
   justify-content: right;
+  display: flex;
 }
 
+#homeText{
+  position: sticky;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
 #customerProfile {
   height: 100%;
   width: 100%;
@@ -108,11 +113,8 @@ a { /*sytles router-lin*/
 }
 
 .customerMenu {
-  position: sticky;
-  padding: 10px;
   margin-top: auto;
   margin-bottom: auto;
-  margin-right: 10px;
   justify-content: right;
 }
 </style>
