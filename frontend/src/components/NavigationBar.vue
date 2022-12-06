@@ -10,18 +10,21 @@
       <router-link class="right" v-if="!isLogedIn" to="/login">Login</router-link>
       <router-link class="right" v-if="!isLogedIn" to="/signup">Registrieren</router-link>
       <menu class="customerMenu" v-if="openMenu&&isLogedIn">
-      <li><a>Meine Reservierungen</a></li>
-      <li><a>Meine Rechnungen</a></li>
-      <li>
-        <router-link @click="logout" to="">Logout</router-link>
-      </li>
-    </menu>
-  </div>
+        <li>
+          <router-link @click="openMenu = !openMenu" to="/reservations">Meine Reservierungen</router-link>
+        </li>
+        <li><a @click="openMenu = !openMenu">Meine Rechnungen</a></li>
+        <li>
+          <router-link @click="logout" to="">Logout</router-link>
+        </li>
+      </menu>
+    </div>
   </nav>
 </template>
 
 <script>
-import { LOCALSTORAGE_INSTANCE } from "@/services/localstorage.service.js";
+import {LOCALSTORAGE_INSTANCE} from "@/services/localstorage.service.js";
+
 export default {
   name: 'NavigitonBar',
   computed: { //computed property always executes, when our values change, the values gets chaced until it is changed
@@ -35,13 +38,14 @@ export default {
     logout() {
       LOCALSTORAGE_INSTANCE.deleteAuth();
       this.$store.commit('logout');
+      this.triggerMenu();
     },
     goHome() {
       this.$router.push({name: 'home'});
     }
   },
   data() {
-    let backendToken = localStorage.getItem("token");
+    let backendToken = LOCALSTORAGE_INSTANCE.getToken();
     if (backendToken != null) {
       let kundenToken = JSON.parse(atob(backendToken.split('.')[1]))
       let encodedName = encodeURIComponent(kundenToken.Vorname + " " + kundenToken.ZweiterVorname + " " + kundenToken.Nachname);
@@ -51,7 +55,7 @@ export default {
     return {openMenu: false, encodedName: 'Error Man'}
   },
   updated() {
-    let backendToken = localStorage.getItem("token");
+    let backendToken = LOCALSTORAGE_INSTANCE.getToken();
     if (backendToken != null) {
       let kundenToken = JSON.parse(atob(backendToken.split('.')[1]))
       let encodedName = encodeURIComponent(kundenToken.Vorname + " " + kundenToken.ZweiterVorname + " " + kundenToken.Nachname);
@@ -87,7 +91,7 @@ a { /*sytles router-lin*/
   margin-bottom: auto;
 }
 
-.container{
+.container {
   height: 100%;
 }
 
@@ -100,12 +104,13 @@ a { /*sytles router-lin*/
   display: flex;
 }
 
-#homeText{
+#homeText {
   position: sticky;
   top: 50%;
   left: 50%;
   transform: translateX(-50%);
 }
+
 #customerProfile {
   height: 100%;
   width: 100%;

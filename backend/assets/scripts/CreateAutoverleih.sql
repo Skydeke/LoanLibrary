@@ -229,17 +229,14 @@ commit;
 insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr, Kennzeichen) values (STR_TO_DATE('2022-10-12 12:00:30','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-10-19 11:50:00','%Y-%m-%d %H:%i:%s'), 168393, 168792, 1, 'RV-SW-7223');
 insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr, Kennzeichen) values (STR_TO_DATE('2022-09-26 09:01:00','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-09-26 10:03:00','%Y-%m-%d %H:%i:%s'), 160342, 160382, 2, 'RW-PA-2893');
 insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr, Kennzeichen) values (STR_TO_DATE('2022-08-15 12:07:13','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-08-15 18:05:43','%Y-%m-%d %H:%i:%s'), 80342, 80412, 3, 'RV-KA-789');
-insert into Ausleihvorgang(beginnZeit, endeZeit, beginnKm, endeKm, AusleihvorgangNr, Kennzeichen) values (STR_TO_DATE('2022-10-12 15:13:20','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-10-19 15:11:23','%Y-%m-%d %H:%i:%s'), 4232, 5121, 4, 'RV-FS-1225');
 commit;
 
 insert into Rechnung (Summe, Beglichen, RechNr, AusleihvorgangNr) values (1849.7 , 't', 1, 1);
 insert into Rechnung (Summe, Beglichen, RechNr, AusleihvorgangNr) values (144 , 'f', 2, 2);
 insert into Rechnung (Summe, Beglichen, RechNr, AusleihvorgangNr) values (178 , 't', 3, 3);
-insert into Rechnung (Summe, Beglichen, RechNr, AusleihvorgangNr) values (2627.8 , 't', 4, 4);
 commit;
 
 insert into Reservierung(geplanterStart, geplantesEnde, KundenNr, AutomodellNr, AusleihvorgangNr, ResNr) values (STR_TO_DATE('2022-10-12 12:00:00','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-10-19 12:00:00','%Y-%m-%d %H:%i:%s'), 1, 5, 1, 1);
 insert into Reservierung(geplanterStart, geplantesEnde, KundenNr, AutomodellNr, AusleihvorgangNr, ResNr) values (STR_TO_DATE('2022-09-26 09:00:00','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-09-26 10:00:00','%Y-%m-%d %H:%i:%s'), 3, 2, 2, 2);
 insert into Reservierung(geplanterStart, geplantesEnde, KundenNr, AutomodellNr, AusleihvorgangNr, ResNr) values (STR_TO_DATE('2022-08-15 12:10:00','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-08-15 18:10:00','%Y-%m-%d %H:%i:%s'), 2, 1, 3, 3);
-insert into Reservierung(geplanterStart, geplantesEnde, KundenNr, AutomodellNr, AusleihvorgangNr, ResNr) values (STR_TO_DATE('2022-10-12 15:10:00','%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2022-10-19 15:10:00','%Y-%m-%d %H:%i:%s'), 3, 4, 4, 4);
 commit;

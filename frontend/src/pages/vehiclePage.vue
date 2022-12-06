@@ -7,12 +7,10 @@
       Automodell für ein bestimmten Zeitraum reservieren. Eine Reservierung ist kostenlos und muss nicht zwangsläufig
       zu einem Leihvertrag führen.
       <br>
-      Um ein Auto dieses Autoexemplars für einen Zeitraum freizuhalten gib das Startdatum:
-      <input type="date" placeholder="Startdatum" v-model="startdate"/>
-      <input type="time" placeholder="Startzeit" v-model="starttime"/>
-      und das Enddatum:
-      <input type="date" placeholder="Enddatum" v-model="enddate"/>
-      <input type="time" placeholder="Endzeit" v-model="endtime"/>
+      Um ein Auto dieses Autoexemplars für einen Zeitraum freizuhalten gib das Startdatum & Zeit:
+      <Datepicker v-model="startdate"></Datepicker>
+      und das Enddatum & Zeit:
+      <Datepicker v-model="enddate"></Datepicker>
       ein.
     </p>
     <button id="reserveBtn" @click="reserve">Reservieren</button>
@@ -23,17 +21,19 @@
 
 import axios from "axios";
 import DetailedCarComponent from "@/components/DetailedCarComponent.vue";
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 export default {
   name: 'vehiclePage',
-  components: {DetailedCarComponent},
+  components: {DetailedCarComponent, Datepicker},
   methods: {
     reserve() {
       if (!this.isLogedIn()){
         this.$router.push({name:'login'});
       }else {
-        if (this.endtime !== undefined && this.enddate !== undefined && this.starttime !== undefined && this.startdate !== undefined){
-          console.log("Creating Reservierung on " + this.startdate + " " +this.starttime + " until " + this.enddate + " " + this.endtime)
+        if (this.enddate !== null && this.startdate !== null){
+          console.log("Creating Reservierung on " + this.startdate + " " + " until " + this.enddate)
         }else{
           console.log("Not all Info Present to create Reservierung.")
         }
@@ -44,16 +44,17 @@ export default {
     }
   },
   data() {
-    return {id: '', carmod: {}, starttime: undefined, endtime: undefined, startdate: undefined, enddate: undefined}
+    return {id: '', carmod: {}, startdate: null, enddate: null}
   },
   created() {
     this.id = this.$route.params.id
-    axios.get(this.$hostname + '/automodell/' + this.id).then(response => {
+    let carProm = axios.get(this.$hostname + '/automodell/' + this.id).then(response => {
       this.carmod = response.data;
-      axios.get(this.$hostname + '/automodell/ausstattungen/' + this.id).then(response => {
-        this.carmod.ausstattung = response.data;
-      }).catch(error => console.log(error))
     }).catch(error => console.log(error))
+    axios.get(this.$hostname + '/automodell/ausstattungen/' + this.id).then(response => {
+      this.carmod.ausstattung = response.data;
+    }).catch(error => console.log(error))
+    this.carmod = carProm;
   }
 }
 </script>

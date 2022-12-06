@@ -7,7 +7,6 @@ class LocalStorage {
 
   readAuth() {
     let state = localStorage.getItem("isLogedIn");
-    console.log("Reading state of isLogedIn" + state);
     if (state === undefined || state === null){
       return false;
     }
@@ -17,6 +16,10 @@ class LocalStorage {
   deleteAuth() {
     localStorage.removeItem("isLogedIn");
     localStorage.removeItem('token');
+  }
+
+  getToken(){
+    return localStorage.getItem("token");
   }
 }
 

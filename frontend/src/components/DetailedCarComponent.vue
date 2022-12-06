@@ -57,10 +57,7 @@
 export default {
   name: 'DetailedCarComponent',
   props: ['carmod'],
-  methods: {},
-  data: function () {
-    return {}
-  }
+  methods: {}
 }
 
 </script>
