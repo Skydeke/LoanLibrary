@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pageContainer">
     <h1>Meine Reservierungen</h1>
     <ReservationComponent class="resWrapper" v-for="reservation in reservations" :key="reservation.ResNr"
                           :reservation="reservation"></ReservationComponent>
@@ -44,6 +44,10 @@ export default {
 <style scoped>
 h1 {
   text-align: center;
+}
+.pageContainer{
+  margin-left: 20%;
+  width: 60%;
 }
 
 .resWrapper {

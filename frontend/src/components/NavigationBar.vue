@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="left">
-    <img id="sidebar" src="../assets/sidebar.png"/>
+    <img id="sidebar" @click="toggleSidebar" src="../assets/sidebar.png"/>
     <img id="logo" @click="goHome" src="../assets/logo.png"/>
    </div>
     <router-link id="homeText" to="/">Home</router-link>
@@ -28,7 +28,6 @@
 <script>
 import {LOCALSTORAGE_INSTANCE} from "@/services/localstorage.service.js";
 
-
 export default {
   name: 'NavigitonBar',
   computed: { //computed property always executes, when our values change, the values gets chaced until it is changed
@@ -46,6 +45,9 @@ export default {
     },
     goHome() {
       this.$router.push({name: 'home'});
+    },
+    toggleSidebar(){
+      this.$emit("sidebarToggle");
     }
   },
   data() {
@@ -58,6 +60,7 @@ export default {
     }
     return {openMenu: false, encodedName: 'Error Man'}
   },
+  emits: ['sidebarToggle'],
   updated() {
     let backendToken = LOCALSTORAGE_INSTANCE.getToken();
     if (backendToken != null) {

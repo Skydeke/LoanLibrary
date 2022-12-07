@@ -1,7 +1,7 @@
 <template>
-  <div class="classWrapper" v-for="type in cars" :key="type.type">
+  <div class="classWrapper" :id="type.type" v-for="type in cars" :key="type.type">
     <h1> {{type.type}}</h1>
-    <div class="carWrapper" v-for="car in type.values" :key="car.Hersteller">
+    <div  class="carWrapper" v-for="car in type.values" :key="car.Hersteller">
         <CarComponent :car="car"></CarComponent>
     </div>
     <hr>
@@ -21,10 +21,11 @@ export default {
       axios.get(this.$hostname + '/automodells')
       .then(response =>{
          this.cars = response.data;
-         console.log(response.data);
       })
       .catch(error => console.log(error))
-  }		
+  },updated(){
+    if(this.$route.hash)this.$scrollTo(this.$route.hash, 500, { easing: 'ease-in-out',offset:-150}) //offset becuase of the navbar
+  }	
 }
 </script>
 

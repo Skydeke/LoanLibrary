@@ -74,7 +74,7 @@ export default {
 .blackborder {
   border-top: solid 2px black;;
   border-bottom: solid 2px black;;
-  border-right: solid 2px black;;
+  border-right: solid 2px black;
   margin: 10px;
 }
 

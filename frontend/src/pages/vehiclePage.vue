@@ -1,4 +1,5 @@
 <template>
+  <div class="pageContainer">
   <DetailedCarComponent :carmod="carmod"></DetailedCarComponent>
   <div id="resCont">
     <h2>Reservierung</h2>
@@ -15,6 +16,7 @@
     </p>
     <button id="reserveBtn" @click="reserve">Reservieren</button>
   </div>
+</div>
 </template>
 
 <script>
@@ -79,6 +81,10 @@ export default {
 
 #reserveBtn {
   width: 100%;
+}
+.pageContainer{
+  margin-left: 20%;
+  width: 60%;
 }
 </style>
   
