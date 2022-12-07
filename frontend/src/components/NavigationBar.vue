@@ -1,14 +1,17 @@
 <template>
   <nav>
-    <img @click="goHome" src="../assets/logo.png"/>
+    <div class="left">
+    <img id="sidebar" src="../assets/sidebar.png"/>
+    <img id="logo" @click="goHome" src="../assets/logo.png"/>
+   </div>
     <router-link id="homeText" to="/">Home</router-link>
     <div class="right">
       <div class="container">
         <img @click="triggerMenu" v-if="isLogedIn" v-bind:src="'https://ui-avatars.com/api/?name=' + encodedName"
              id="customerProfile" alt="ProfilePicture"/>
       </div>
-      <router-link class="right" v-if="!isLogedIn" to="/login">Login</router-link>
-      <router-link class="right" v-if="!isLogedIn" to="/signup">Registrieren</router-link>
+      <router-link  v-if="!isLogedIn" to="/login">Login</router-link>
+      <router-link  v-if="!isLogedIn" to="/signup">Registrieren</router-link>
       <menu class="customerMenu" v-if="openMenu&&isLogedIn">
         <li>
           <router-link @click="openMenu = !openMenu" to="/reservations">Meine Reservierungen</router-link>
@@ -24,6 +27,7 @@
 
 <script>
 import {LOCALSTORAGE_INSTANCE} from "@/services/localstorage.service.js";
+
 
 export default {
   name: 'NavigitonBar',
@@ -78,11 +82,15 @@ nav {
   top: 0;
 }
 
-img {
-  height: 3%;
-  width: 3%;
-  border: black;
+#sidebar{
+  width: 5%;
+  height: 5%;
+  margin-left: 10px;
+}
 
+#logo{
+  width: 15%;
+  height: 15%;
 }
 
 a { /*sytles router-lin*/
@@ -102,14 +110,18 @@ a { /*sytles router-lin*/
   margin-right: 10px;
   justify-content: right;
   display: flex;
+  width: 33%;
+}
+.left{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 100%;
+  width: 33%;
 }
 
-#homeText {
-  position: sticky;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-}
+
+
 
 #customerProfile {
   height: 100%;
