@@ -5,6 +5,8 @@ services:
     ports:
       - 80:80
     image: xxfiestadeamonxx/loan-libary-frontend:firstImage
+    volumes:
+      - "./frontend/nginx/nginx.conf:/etc/nginx/nginx.conf"
   backend: 
     build: ./backend
     image: xxfiestadeamonxx/loan-libary-backend:firstImage
