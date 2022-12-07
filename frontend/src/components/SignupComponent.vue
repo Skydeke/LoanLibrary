@@ -235,6 +235,7 @@
         background-color: white;
         border-radius: 5px;
         margin-bottom: 10px;
+        margin-top: 5px;
         width: 20%;
         height: 10%;
       }
@@ -257,14 +258,14 @@
         margin: 0;
     }
     .progressbar-0p{
-        background-color: lightgrey;
+        background-color:  rgb(250, 244, 244);
 
      }
      .progressbar-25p{
-        background-color: red;
+        background-color: lightcoral;
      }
      .progressbar-50p{
-        background-color: yellow;
+        background-color: lightyellow;
 
     }
     .progressbar-75p{
@@ -272,7 +273,7 @@
 
     }
     .progressbar-100p{
-        background-color: green;
+        background-color: rgb(159, 236, 83);
     }   
      
     </style>
