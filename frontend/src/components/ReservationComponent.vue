@@ -2,7 +2,7 @@
   <div class="blackborder">
     <table>
       <tr>
-        <td><h2>Ausgeliehenes Automodell</h2></td>
+        <td><h2>Auszuleihendes Automodell</h2></td>
         <td><h2>Reservierungsinformationen</h2></td>
       </tr>
       <tr>
