@@ -41,7 +41,6 @@ export default {
           console.log("An Error happend deleting the reservation.")
         }else {
           console.log("Deleted Reservation with id: " + this.reservation.ResNr)
-          // remove the element from the DOM
           this.$el.parentNode.removeChild(this.$el);
         }
       }).catch(error => console.log(error));
@@ -97,6 +96,8 @@ h2 {
 }
 
 .container {
+  position: sticky;
   margin: 50px 10px 10px;
+  z-index: 0;
 }
 </style>

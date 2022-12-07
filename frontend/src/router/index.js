@@ -3,7 +3,7 @@ import homePage from '../pages/homePage'
 import loginPage from '../pages/loginPage'
 import signupPage from '../pages/signupPage'
 import vehiclePage from '../pages/vehiclePage'
-import reservationsPage from "@/pages/reservationsPage.vue";
+import reservationsPage from "../pages/reservationsPage.vue";
 
 const routes = [ 
     { path: '/', name:'home', component: homePage },

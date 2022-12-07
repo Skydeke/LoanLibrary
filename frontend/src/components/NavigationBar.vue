@@ -83,6 +83,7 @@ nav {
   width: 100%;
   height: 10%;
   top: 0;
+  z-index: 50;
 }
 
 #sidebar{
