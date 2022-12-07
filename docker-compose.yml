@@ -3,7 +3,7 @@ services:
   frontend: 
     build: ./frontend
     ports:
-      - 80:8080
+      - 80:80
     image: xxfiestadeamonxx/loan-libary-frontend:firstImage
   backend: 
     build: ./backend

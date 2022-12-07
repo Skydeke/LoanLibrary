@@ -56,12 +56,12 @@ export default {
     }).catch(error => console.log(error));
     let dbStartD = new Date(Date.parse(this.reservation.geplanterStart));
     let dbEndD = new Date(Date.parse(this.reservation.geplantesEnde));
-    let timeOffsetInMS = dbStartD.getTimezoneOffset() * 60000;
+    //let timeOffsetInMS = dbStartD.getTimezoneOffset() * 60000;
 
     let localStart = new Date(dbStartD.getTime());
-    localStart.setTime(localStart.getTime() - timeOffsetInMS);
+    //localStart.setTime(localStart.getTime() - timeOffsetInMS);
     let localEnd = new Date(dbEndD.getTime());
-    localEnd.setTime(localEnd.getTime() - timeOffsetInMS);
+    //localEnd.setTime(localEnd.getTime() - timeOffsetInMS);
     console.log("start: " + dbStartD.getTimezoneOffset())
     return {carm: carPr, startTime: localStart, endTime: localEnd}
   }
