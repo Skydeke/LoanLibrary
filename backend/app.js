@@ -27,7 +27,7 @@ database.connect(function (err) {
 app.use(express.json()); //parses incoming json requests
 
 app.use(cors({
-    origin: ['http://localhost', 'http://localhost:8080'] //enable cross-platform-source
+    origin: ['http://localhost', 'http://localhost:8080',] //enable cross-platform-source
 }));
 
 function verifyToken(req, res, next) { //middleware function

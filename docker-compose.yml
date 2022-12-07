@@ -14,16 +14,12 @@ services:
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_NAME=car_share
-    ports:
-      - 8081:8081
   database:
     image: mysql:5.7
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=car_share
-    ports:
-      - 3306:3306
     volumes:
       - "./backend/assets/scripts/CreateAutoverleih.sql:/docker-entrypoint-initdb.d/1.sql"
       - dbdata:/var/lib/mysql
