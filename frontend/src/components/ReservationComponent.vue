@@ -16,6 +16,7 @@
             <p>bis</p>
             <Datepicker v-model="endTime" :readonly="true"></Datepicker>
             <p>zur Verfügung gestellt.</p>
+            <button @click="delReservation">Reservierung stornieren</button>
           </div>
         </td>
       </tr>
@@ -33,7 +34,19 @@ export default {
   name: 'ReservationComponent',
   components: {DetailedCarComponent, Datepicker},
   props: ['reservation'],
-  methods: {},
+  methods: {
+    delReservation(){
+      axios.delete(this.$hostname + '/reservation/' + this.reservation.ResNr).then(response => {
+        if (response.status !== 200){
+          console.log("An Error happend deleting the reservation.")
+        }else {
+          console.log("Deleted Reservation with id: " + this.reservation.ResNr)
+          // remove the element from the DOM
+          this.$el.parentNode.removeChild(this.$el);
+        }
+      }).catch(error => console.log(error));
+    }
+  },
   data() {
     this.id = this.reservation.AutomodellNr;
     let carPr = axios.get(this.$hostname + '/automodell/' + this.id).then(response => {
@@ -41,8 +54,17 @@ export default {
     }).catch(error => console.log(error))
     axios.get(this.$hostname + '/automodell/ausstattungen/' + this.id).then(response => {
       this.carm.ausstattung = response.data;
-    }).catch(error => console.log(error))
-    return {carm: carPr, startTime: this.reservation.geplanterStart, endTime: this.reservation.geplantesEnde}
+    }).catch(error => console.log(error));
+    let dbStartD = new Date(Date.parse(this.reservation.geplanterStart));
+    let dbEndD = new Date(Date.parse(this.reservation.geplantesEnde));
+    let timeOffsetInMS = dbStartD.getTimezoneOffset() * 60000;
+
+    let localStart = new Date(dbStartD.getTime());
+    localStart.setTime(localStart.getTime() - timeOffsetInMS);
+    let localEnd = new Date(dbEndD.getTime());
+    localEnd.setTime(localEnd.getTime() - timeOffsetInMS);
+    console.log("start: " + dbStartD.getTimezoneOffset())
+    return {carm: carPr, startTime: localStart, endTime: localEnd}
   }
 }
 </script>

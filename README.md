@@ -59,6 +59,7 @@ npm run build
 Adapted Code
 ============
 In compliance with our task for this lecture we have to mark every piece of code that we adapted from other sources.
+- The Datetime-Pickers https://vue3datepicker.com/props/general-configuration/#readonly
 
 Cloud
 =====

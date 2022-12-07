@@ -8,9 +8,9 @@
       zu einem Leihvertrag führen.
       <br>
       Um ein Auto dieses Autoexemplars für einen Zeitraum freizuhalten gib das Startdatum & Zeit:
-      <Datepicker v-model="startdate"></Datepicker>
+      <Datepicker v-model="startdate" locale="de"></Datepicker>
       und das Enddatum & Zeit:
-      <Datepicker v-model="enddate"></Datepicker>
+      <Datepicker v-model="enddate" locale="de"></Datepicker>
       ein.
     </p>
     <button id="reserveBtn" @click="reserve">Reservieren</button>
@@ -23,23 +23,35 @@ import axios from "axios";
 import DetailedCarComponent from "@/components/DetailedCarComponent.vue";
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
+import {LOCALSTORAGE_INSTANCE} from "@/services/localstorage.service";
 
 export default {
   name: 'vehiclePage',
   components: {DetailedCarComponent, Datepicker},
   methods: {
     reserve() {
-      if (!this.isLogedIn()){
-        this.$router.push({name:'login'});
-      }else {
-        if (this.enddate !== null && this.startdate !== null){
+      if (!this.isLogedIn()) {
+        this.$router.push({name: 'login'});
+      } else {
+        if (this.enddate !== null && this.startdate !== null) {
           console.log("Creating Reservierung on " + this.startdate + " " + " until " + this.enddate)
-        }else{
+          let backendToken = LOCALSTORAGE_INSTANCE.getToken();
+          let kundenNr = JSON.parse(atob(backendToken.split('.')[1])).KundenNr;
+          this.reservation = {
+            geplanterStart: this.startdate, geplantesEnde: this.enddate,
+            AutomodellNr: this.id, KundenNr: kundenNr, AusleihvorgangNr: null
+          };
+          axios.post(this.$hostname + '/reservation', this.reservation)
+              .then((response) => {
+                console.log("Creating Reservierung: " + response.toString());
+                this.$router.push({name: 'reservations'});
+              }).catch(error => console.log(error));
+        } else {
           console.log("Not all Info Present to create Reservierung.")
         }
       }
     },
-    isLogedIn(){
+    isLogedIn() {
       return this.$store.getters.isLogedIn;
     }
   },
@@ -64,6 +76,7 @@ export default {
 #resCont {
   margin: 20px;
 }
+
 #reserveBtn {
   width: 100%;
 }

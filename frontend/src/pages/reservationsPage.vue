@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>Meine Reservierungen</h1>
-    <ReservationComponent class="resWrapper" v-for="reservation in reservations" :key="reservation.ResNr" :reservation="reservation"></ReservationComponent>
+    <ReservationComponent class="resWrapper" v-for="reservation in reservations" :key="reservation.ResNr"
+                          :reservation="reservation"></ReservationComponent>
   </div>
 </template>
 
@@ -22,15 +23,19 @@ export default {
         'Authorization': `${access_token}`
       }
     }).then(response => {
-          this.reservations = response.data;
-          console.log(response.data);
-          if (response.status === 403){
-            LOCALSTORAGE_INSTANCE.deleteAuth();
-            this.$store.commit('logout');
-            this.$router.push({name: 'login'});
-          }
+      this.reservations = response.data;
+      console.log(response.data);
+      if (response.status === 403) {
+        LOCALSTORAGE_INSTANCE.deleteAuth();
+        this.$store.commit('logout');
+        this.$router.push({name: 'login'});
+      }
+    }).catch(error => {
+          console.log(error)
+          LOCALSTORAGE_INSTANCE.deleteAuth();
+          this.$store.commit('logout');
+          this.$router.push({name: 'login'});
         })
-        .catch(error => console.log(error))
   }
 }
 </script>
@@ -41,7 +46,7 @@ h1 {
   text-align: center;
 }
 
-.resWrapper{
+.resWrapper {
   margin-bottom: 10px;
 }
 

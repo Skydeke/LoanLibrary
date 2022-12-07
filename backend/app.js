@@ -48,7 +48,7 @@ app.get('/reservations', verifyToken, (req, res) => { //usem middleware function
         let kundenNr = decoded.KundenNr;
         const sqlQuery = `Select *
                           from Reservierung re
-                          where re.KundenNr = ${kundenNr}`;
+                          where re.KundenNr = ${kundenNr} and re.AusleihvorgangNr is null`; //Only send Reservations that havent been made good on
 
         database.query(sqlQuery, (err, result) => {
             if (err) {
@@ -62,6 +62,41 @@ app.get('/reservations', verifyToken, (req, res) => { //usem middleware function
     } catch (err) {
         res.sendStatus(403); //Acces forbidden
     }
+})
+
+app.delete('/reservation/:id', (req, res) => {
+    let ResNr = req.params.id;
+    const sqlQuery = `DELETE
+                      FROM Reservierung
+                      WHERE ResNr = ${ResNr}`;
+
+    database.query(sqlQuery, (err, result) => {
+        if (err) {
+            console.log("Error: " + err);
+            res.status(500);
+        } else {
+            res.status(200);
+            res.send(result);
+        }
+    });
+})
+
+app.post('/reservation', (req, res) => {
+    let newReservation = req.body;
+    let startDate = (newReservation.geplanterStart).toString().replace("T", " ").replace("Z", "");
+    let endDate = (newReservation.geplantesEnde).toString().replace("T", " ").replace("Z", "");
+    const sqlQuery = `insert into Reservierung (geplanterStart, geplantesEnde, AutomodellNr, KundenNr, AusleihvorgangNr)
+                      values ('${startDate}', '${endDate}', '${newReservation.AutomodellNr}', '${newReservation.KundenNr}',
+                              ${newReservation.AusleihvorgangNr});`;
+    database.query(sqlQuery, (err, result) => { //get the last KundenNummer
+        if (err) {
+            console.log(err);
+            console.log(result);
+            res.status(500).send("Oh uh, something went wrong on tha server.");
+        } else {
+            res.status(200).send(result);
+        }
+    })
 })
 
 app.get('/automodells', (req, res) => {
@@ -163,7 +198,7 @@ app.get('/automodell/ausstattungen/:id', (req, res) => {
 
 app.get('/image/:path', (req, res) => {
     let path = req.params.path;
-    if (path !== undefined && path !== "undefined"){
+    if (path !== undefined && path !== "undefined") {
         res.sendFile('/assets/' + path, {root: __dirname}, function (err) {
             if (err) {
                 res.status(500).send("Oh uh, something went wrong on tha server. " + err);
