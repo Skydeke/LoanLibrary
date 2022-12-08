@@ -39,11 +39,11 @@ export default {
           console.log("Creating Reservierung on " + this.startdate + " " + " until " + this.enddate)
           let backendToken = LOCALSTORAGE_INSTANCE.getToken();
           let kundenNr = JSON.parse(atob(backendToken.split('.')[1])).KundenNr;
-          this.reservation = {
+          this.bill = {
             geplanterStart: this.startdate, geplantesEnde: this.enddate,
             AutomodellNr: this.id, KundenNr: kundenNr, AusleihvorgangNr: null
           };
-          axios.post(this.$hostname + '/reservation', this.reservation)
+          axios.post(this.$hostname + '/reservation', this.bill)
               .then((response) => {
                 console.log("Creating Reservierung: " + response.toString());
                 this.$router.push({name: 'reservations'});

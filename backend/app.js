@@ -64,6 +64,28 @@ app.get('/reservations', verifyToken, (req, res) => { //usem middleware function
     }
 })
 
+app.get('/bills', verifyToken, (req, res) => { //usem middleware function
+    try {
+        let decoded = jwt.verify(req.token, 'secret'); //do something with the token, user is authenticated
+        let kundenNr = decoded.KundenNr;
+        const sqlQuery = `Select *
+                          from Reservierung re, Rechnung r, Ausleihvorgang a
+                          where re.KundenNr = ${kundenNr} and re.AusleihvorgangNr = a.AusleihvorgangNr and a.AusleihvorgangNr = r.AusleihvorgangNr`;
+
+        database.query(sqlQuery, (err, result) => {
+            if (err) {
+                console.log("Error: " + err);
+                res.status(500);
+            } else {
+                res.status(200);
+                res.json(result);
+            }
+        });
+    } catch (err) {
+        res.sendStatus(403); //Acces forbidden
+    }
+})
+
 app.delete('/reservation/:id', (req, res) => {
     let ResNr = req.params.id;
     const sqlQuery = `DELETE

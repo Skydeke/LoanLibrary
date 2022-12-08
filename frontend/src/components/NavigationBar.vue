@@ -16,7 +16,7 @@
         <li>
           <router-link @click="openMenu = !openMenu" to="/reservations">Meine Reservierungen</router-link>
         </li>
-        <li><a @click="openMenu = !openMenu">Meine Rechnungen</a></li>
+        <li><router-link @click="openMenu = !openMenu" to="/bills">Meine Rechnungen</router-link></li>
         <li>
           <router-link @click="logout" to="">Logout</router-link>
         </li>
