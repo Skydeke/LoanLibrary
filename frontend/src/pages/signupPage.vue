@@ -8,7 +8,11 @@
     import SignupComponent from '@/components/SignupComponent.vue';
     export default {
       name: 'signupPage',
-      components:{SignupComponent}	
+      components:{SignupComponent},
+      emits: ['sidebarDisable'],
+      mounted(){
+        this.$emit("sidebarDisable");
+      }	
     }
     </script>
     

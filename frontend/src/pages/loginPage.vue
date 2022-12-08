@@ -8,7 +8,11 @@
 import LoginComponent from '../components/LoginComponent.vue'
 export default {
   name: 'loginPage',
-  components:{LoginComponent}	
+  components:{LoginComponent},
+  emits: ['sidebarDisable'],
+  mounted(){
+    this.$emit("sidebarDisable");
+  }
 }
 </script>
 
