@@ -4,7 +4,15 @@ services:
     build: ./frontend
     ports:
       - 80:80
+      - 443:443
     image: xxfiestadeamonxx/loan-libary-frontend:firstImage
+    volumes:
+      - ./frontend/nginx/certbot/www:/var/www/certbot/:ro
+      - ./frontend/nginx/certbot/conf/:/etc/nginx/ssl/:ro
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./frontend/nginx/certbot/www/:/var/www/certbot/:rw
   backend: 
     build: ./backend
     image: xxfiestadeamonxx/loan-libary-backend:firstImage
