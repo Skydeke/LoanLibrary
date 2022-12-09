@@ -83,7 +83,18 @@ The two image repositories are provided below.
  - [Frontend-Container](https://hub.docker.com/repository/docker/xxfiestadeamonxx/loan-libary-frontend)
  - [Backend-Container](https://hub.docker.com/repository/docker/xxfiestadeamonxx/loan-libary-backend)
 
-
+Certbot
+==========
+In order to use HTTPS we need a valid TLS certificate. Certbot is an easy way to do tis. 
+To test the setup use
+```
+docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --dry-run -d example.org
+```
+If everything succsseds, you can cerate the certificate by ussing:
+```
+docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --dry-run -d example.org
+```
+Certbot automatically renews your certificate once it is launche in the background. 
 Contributers
 ============
 
