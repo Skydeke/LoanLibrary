@@ -60,11 +60,13 @@ Adapted Code
 ============
 In compliance with our task for this lecture we have to mark every piece of code that we adapted from other sources.
 - The Datetime-Pickers https://vue3datepicker.com/props/general-configuration/#readonly
+- E-Mail validation https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+- Password Progrssbar Reference https://serversideup.net/password-security-validation-with-vuejs-and-zxcvbn/ 
 
 Cloud
 =====
 As part of the lecture we also have to deploy our Web-App into a Cloud-Service of our choice.
-The [Link](https://grabo.azurewebsites.net/) will be provided here.
+This is the[Link](https://grabo.duckdns.org/).
 
 Docker
 ======
