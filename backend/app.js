@@ -144,7 +144,7 @@ app.get('/automodells', (req, res) => {
 
                 for (let i = 0; i < types.length; i++) {
                     if (car.Typ === types[i]) {
-                        typeObj[i].values.push(JSON.parse(JSON.stringify(car)));
+                        typeObj[i].values.push(car);
                     }
                 }
 
