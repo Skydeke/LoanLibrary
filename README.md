@@ -96,7 +96,7 @@ docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/cert
 ```
 If everything succsseds, you can cerate the certificate by ussing:
 ```
-docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --dry-run -d example.org
+docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -d example.org
 ```
 Certbot automatically renews your certificate once it is launches in the background.
 
