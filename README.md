@@ -18,42 +18,45 @@ Frontend
 --------
 We created a component for every side and inside this component we used other compontes.
 We have the following pages:
-    - [billsPage](frontend/src/pages/billsPage.vue)shows past bills
-    - [homePage](frontend/src/pages/homePage.vue)landing page of the application, shows all cars in the loan_libary
-    - [loginPage](frontend/src/pages/loginPage.vue)login into your accout
-    - [reservationsPage](frontend/src/pages/reservationsPage.vue) all your active reservation
-    - [signUpPage](frontend/src/pages/signUpPage.vue) create a account
-    - [vehiclePage](frontend/src/pages/vehiclePage.vue) reservate a car and see the details of a car
+
+- [billsPage](frontend/src/pages/billsPage.vue)shows past bills
+- [homePage](frontend/src/pages/homePage.vue)landing page of the application, shows all cars in the loan_libary
+- [loginPage](frontend/src/pages/loginPage.vue)login into your accout
+- [reservationsPage](frontend/src/pages/reservationsPage.vue) all your active reservation
+- [signUpPage](frontend/src/pages/signUpPage.vue) create a account
+- [vehiclePage](frontend/src/pages/vehiclePage.vue) reservate a car and see the details of a car
+
 Then we added the following components:
-    - [BillComponent](frontend/src/components/BillComponent.vue)represents a single bill inside the billsPage
-    - [CarComponent] (frontend/src/components/CarComponent.vue) represents a single car inside the homePage
-    - [DetailedCarComponent](frontend/src/components/DetailedCarComponent.vue)details of a car inside the vehiclePage
-    - [LoginComponent](frontend/src/components/LoginComponent.vue)login-template inside the loginPage
-    - [NavigationBar](frontend/src/components/NavigationBar.vue)navigationbar for all of your pages
-    - [ReservationComponent](frontend/src/components/ReservationComponent.vue)represents a single reservation inside the reservationPage
-    - [SidebarComponent](frontend/src/components/SidebarComponent.vue)jump directly to a car-category from any page
-    - [SignupComponent](frontend/src/components/SignupComponent.vue)signUp-template inside the singUpPage
+- [BillComponent](frontend/src/components/BillComponent.vue)represents a single bill inside the billsPage
+- [CarComponent] (frontend/src/components/CarComponent.vue) represents a single car inside the homePage
+- [DetailedCarComponent](frontend/src/components/DetailedCarComponent.vue)details of a car inside the vehiclePage
+- [LoginComponent](frontend/src/components/LoginComponent.vue)login-template inside the loginPage
+- [NavigationBar](frontend/src/components/NavigationBar.vue)navigationbar for all of your pages
+- [ReservationComponent](frontend/src/components/ReservationComponent.vue)represents a single reservation inside the reservationPage
+- [SidebarComponent](frontend/src/components/SidebarComponent.vue)jump directly to a car-category from any page
+- [SignupComponent](frontend/src/components/SignupComponent.vue)signUp-template inside the singUpPage
+
 We also used services and plugins in our application.
-    - [localstorage](frontend/src//services/localstorage.service.js) We used this service to make the login persitent across differnt sessions.
-    - [vue router](frontend/src/router/index.js) We used the vue router to have a single-side application. We declared oure routes here.
-    - [vuex store](frontend/src/store/index.js)We used the vuex store to save application states across our components. 
+- [localstorage](frontend/src//services/localstorage.service.js) We used this service to make the login persitent across differnt sessions.
+- [vue router](frontend/src/router/index.js) We used the vue router to have a single-side application. We declared oure routes here.
+- [vuex store](frontend/src/store/index.js)We used the vuex store to save application states across our components. 
 
 Backend
 -------
 We used one file for our backend.
-    - [app.js](backend/app.js)
+- [app.js](backend/app.js)
 We documented the Api endpoints and categorized them into the following topics
-    - [Carmodel](backend/documentation/Automodell.pdf)
-    - [Login](backend/documentation/Login.pdf)
-    - [Reservation](backend/documentation/Reservierung.pdf)
+- [Carmodel](backend/documentation/Automodell.pdf)
+- [Login](backend/documentation/Login.pdf)
+- [Reservation](backend/documentation/Reservierung.pdf)
 
 Platform
 -------
 We created one Dockerfile for every Service.
-    - [frontend] (frontend/Dockerfile)
-    - [backend](backend/Dockerfile)
+- [frontend] (frontend/Dockerfile)
+- [backend](backend/Dockerfile)
 
-In order to make your Services secure, we used the nginx-server with https-encryption. Therefore, we added a [nginx-config](frontend/nginx/nginx.conf) and a [certbot-folder](frontend/nginx/certbot/) We also used Docker volumes to make our database persistent. 
+In order to make your Services secure, we used the nginx-server with https-encryption. Therefore, we added a [nginx-config](frontend/nginx/nginx.conf) and a certbot-folder We also used Docker volumes to make our database persistent. 
 We summarized all our services in side the [docker-compose](docker-compose.yml) file.
 
 
