@@ -52,7 +52,7 @@ We used one file for our backend.
 Platform
 -------
 We created one Dockerfile for every Service.
-- [frontend] (frontend/Dockerfile)
+- [frontend](frontend/Dockerfile)
 - [backend](backend/Dockerfile)
 
 In order to make your Services secure, we used the nginx-server with https-encryption. Therefore, we added a [nginx-config](frontend/nginx/nginx.conf) and a certbot-folder We also used Docker volumes to make our database persistent. 
