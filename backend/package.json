@@ -4,7 +4,7 @@
   "description": "Backend to the loan_libary",
   "main": "index.js",
   "scripts": {
-    "serve": "node app.js"
+    "serve": "DB_HOST=localhost DB_USER=root DB_PASSWORD=root DB_NAME=car_share node app.js"
   },
   "author": "",
   "license": "ISC",

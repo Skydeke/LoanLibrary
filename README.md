@@ -87,7 +87,8 @@ For the Commands to work you need to be in the main directory LoanLibrary.
 The Backend requires the Database:
 ```
 docker-compose up -d database
-DB_HOST=localhost DB_USER=root DB_PASSWORD=root DB_NAME=car_share node backend/app.js
+cd backend
+npm run serve
 ```
 
 Launch the vue.js in testing mode, it requires the Backend to run to function properly
