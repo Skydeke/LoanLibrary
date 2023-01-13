@@ -128,7 +128,7 @@ For the frontend we used the following documentations:
 - [Vuex Store](https://vuex.vuejs.org/guide/)
 - [Axios](https://axios-http.com/docs/intro)
 - [Vue-Scrollto](https://www.npmjs.com/package/vue-scrollto)
-- [JavaScript-Modules] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+- [JavaScript-Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
 - [Zxcvbn](https://zxcvbn-ts.github.io/zxcvbn/guide/user-input/)
 
 For the platform we used the following documentations:
@@ -139,8 +139,8 @@ For the platform we used the following documentations:
 - [Certbot-Docker](https://mindsers.blog/post/https-using-nginx-certbot-docker/)
 
 
-Cloud
-=====
+Deployment
+==========
 As part of the lecture we additionaly deployed our Web-App on our raspberry pis. We did this expirience the whole project chicle. This also makes testing our application easier, because databases sometimes have portability issues. <br>
 This is the [Link](https://grabo.duckdns.org/). <br>
 This is the alternative [Link](https://autoverleih.dynv6.net/).
