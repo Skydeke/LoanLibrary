@@ -14,14 +14,6 @@ services:
     volumes:
       - ./frontend/nginx/certbot/www/:/var/www/certbot/:rw
       - ./frontend/nginx/certbot/conf/:/etc/letsencrypt/:rw
-  duckdns:
-    image: lscr.io/linuxserver/duckdns:latest
-    container_name: duckdns
-    environment:
-      - TZ=Europe/Berlin
-      - SUBDOMAINS=grabo
-      - TOKEN=57717bd1-8fef-43a6-9269-7e3712269413
-    restart: unless-stopped
   backend: 
     build: ./backend
     image: xxfiestadeamonxx/loan-libary-backend:firstImage
@@ -37,6 +29,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=car_share
+    ports:
+      - 3306:3306
     volumes:
       - "./backend/assets/scripts/CreateAutoverleih.sql:/docker-entrypoint-initdb.d/1.sql"
       - dbdata:/var/lib/mysql

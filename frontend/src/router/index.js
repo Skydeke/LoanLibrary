@@ -22,4 +22,4 @@ routes,
 });
 
 
-export default router;
+export default router; //export default means that we need no {} when importing
