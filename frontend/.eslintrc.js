@@ -1,10 +1,17 @@
 module.exports = {
-  extends: [
-    "eslint:recommended",
-    "plugin:vue/vue3-recommended",
-    "plugin:prettier/recommended"
-  ],
+  env: {
+    browser: true,
+    es2021: true
+  },
+  extends: ['plugin:vue/vue3-essential', 'standard'],
+  overrides: [],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module'
+  },
+  plugins: ['vue'],
   rules: {
-    // override/add rules settings here, such as:
+    
+      "space-before-function-paren": ["error", "always"]
   }
-};
+}

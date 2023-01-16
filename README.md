@@ -133,6 +133,8 @@ For the frontend we used the following documentations:
 - [Zxcvbn](https://zxcvbn-ts.github.io/zxcvbn/guide/user-input/)
 
 For the platform we used the following documentations:
+- [Eslint](https://eslint.org/docs/latest/)
+- [Prettier](https://prettier.io/docs/en/index.html)
 - [Docker](https://docs.docker.com/get-started/)
 - [Dcoker-Compose](https://docs.docker.com/compose/gettingstarted/)
 - [Nginx](https://www.nginx.com/resources/wiki/start/)

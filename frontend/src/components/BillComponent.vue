@@ -70,49 +70,55 @@
 </template>
 
 <script>
-import DetailedCarComponent from "@/components/DetailedCarComponent.vue";
-import axios from "axios";
-import Datepicker from "@vuepic/vue-datepicker";
-import "@vuepic/vue-datepicker/dist/main.css";
+import DetailedCarComponent from '@/components/DetailedCarComponent.vue'
+import axios from 'axios'
+import Datepicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 export default {
-  name: "BillComponent",
+  name: 'BillComponent',
   components: { DetailedCarComponent, Datepicker },
-  props: ["bill"],
-  data() {
-    this.id = this.bill.AutomodellNr;
-    let carPr = axios
-      .get(this.$hostname + "/automodell/" + this.id)
+  props: {
+    bill: {
+      type: Object,
+      default: null
+    }
+  },
+  data () {
+    this.id = this.bill.AutomodellNr
+    const carPr = axios
+      .get(this.$hostname + '/automodell/' + this.id)
       .then((response) => {
-        this.carm = response.data;
+        this.carm = response.data
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
     axios
-      .get(this.$hostname + "/automodell/ausstattungen/" + this.id)
+      .get(this.$hostname + '/automodell/ausstattungen/' + this.id)
       .then((response) => {
-        this.carm.ausstattung = response.data;
+        this.carm.ausstattung = response.data
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
 
-    let dbStartD = new Date(Date.parse(this.bill.beginnZeit));
-    let dbEndD = new Date(Date.parse(this.bill.endeZeit));
+    const dbStartD = new Date(Date.parse(this.bill.beginnZeit))
+    const dbEndD = new Date(Date.parse(this.bill.endeZeit))
 
-    let localStart = new Date(dbStartD.getTime());
-    let localEnd = new Date(dbEndD.getTime());
-    let tage = (localEnd.getTime() - localStart.getTime()) / (1000 * 3600 * 24);
-    console.log("start: " + dbStartD.getTimezoneOffset());
-    console.log("Bill-Info" + JSON.stringify(this.bill));
-    let km = this.bill.endeKm - this.bill.beginnKm;
+    const localStart = new Date(dbStartD.getTime())
+    const localEnd = new Date(dbEndD.getTime())
+    const tage =
+      (localEnd.getTime() - localStart.getTime()) / (1000 * 3600 * 24)
+    console.log('start: ' + dbStartD.getTimezoneOffset())
+    console.log('Bill-Info' + JSON.stringify(this.bill))
+    const km = this.bill.endeKm - this.bill.beginnKm
     return {
       carm: carPr,
       leihStart: localStart,
       leihEnde: localEnd,
       anzTage: tage,
       anzKm: km
-    };
+    }
   },
   methods: {}
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

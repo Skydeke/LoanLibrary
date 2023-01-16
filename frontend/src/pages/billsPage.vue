@@ -11,41 +11,41 @@
 </template>
 
 <script>
-import BillComponent from "../components/BillComponent.vue";
-import axios from "axios";
-import { LOCALSTORAGE_INSTANCE } from "@/services/localstorage.service";
+import BillComponent from '../components/BillComponent.vue'
+import axios from 'axios'
+import { LOCALSTORAGE_INSTANCE } from '@/services/localstorage.service'
 
 export default {
-  name: "BillsPage",
+  name: 'BillsPage',
   components: { BillComponent },
-  data() {
-    return { bills: [] };
+  data () {
+    return { bills: [] }
   },
-  mounted() {
-    let access_token = LOCALSTORAGE_INSTANCE.getToken();
+  mounted () {
+    const accessToken = LOCALSTORAGE_INSTANCE.getToken()
     axios
-      .get(this.$hostname + "/bills", {
+      .get(this.$hostname + '/bills', {
         headers: {
-          Authorization: `${access_token}`
+          Authorization: `${accessToken}`
         }
       })
       .then((response) => {
-        this.bills = response.data;
-        console.log(response.data);
+        this.bills = response.data
+        console.log(response.data)
         if (response.status === 403) {
-          LOCALSTORAGE_INSTANCE.deleteAuth();
-          this.$store.commit("logout");
-          this.$router.push({ name: "login" });
+          LOCALSTORAGE_INSTANCE.deleteAuth()
+          this.$store.commit('logout')
+          this.$router.push({ name: 'login' })
         }
       })
       .catch((error) => {
-        console.log(error);
-        LOCALSTORAGE_INSTANCE.deleteAuth();
-        this.$store.commit("logout");
-        this.$router.push({ name: "login" });
-      });
+        console.log(error)
+        LOCALSTORAGE_INSTANCE.deleteAuth()
+        this.$store.commit('logout')
+        this.$router.push({ name: 'login' })
+      })
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -49,72 +49,72 @@
 </template>
 
 <script>
-import axios from "axios";
-import { LOCALSTORAGE_INSTANCE } from "@/services/localstorage.service.js";
+import axios from 'axios'
+import { LOCALSTORAGE_INSTANCE } from '@/services/localstorage.service.js'
 export default {
-  name: "LoginComponent",
+  name: 'LoginComponent',
   data: () => {
     return {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       enteredEmail: false,
       passwordVisible: false,
       errorEmail: false,
       errorPassoword: false
-    };
+    }
   },
   methods: {
-    login() {
+    login () {
       if (!this.enteredEmail) {
         if (this.isVailidMail(this.email)) {
-          this.enteredEmail = true;
-          this.errorEmail = false;
+          this.enteredEmail = true
+          this.errorEmail = false
         } else {
-          this.errorEmail = true;
+          this.errorEmail = true
         }
       } else {
         if (this.password) {
           axios
-            .post(this.$hostname + "/login", {
+            .post(this.$hostname + '/login', {
               email: this.email,
               password: this.password
             })
             .then((response) => {
-              LOCALSTORAGE_INSTANCE.writeAuth(response.data.token);
-              this.$store.commit("login"); //mutates the isLogin state inside store
-              this.$router.push({ name: "home" });
+              LOCALSTORAGE_INSTANCE.writeAuth(response.data.token)
+              this.$store.commit('login') // mutates the isLogin state inside store
+              this.$router.push({ name: 'home' })
             })
             .catch((error) => {
-              if (error.response.status === 401) this.errorPassoword = true;
-              else window.alert("Someting went wrong!");
-            });
+              if (error.response.status === 401) this.errorPassoword = true
+              else window.alert('Someting went wrong!')
+            })
         } else {
-          this.errorPassoword = true;
+          this.errorPassoword = true
         }
       }
     },
-    editMail() {
-      this.enteredEmail = false;
-      this.password = "";
+    editMail () {
+      this.enteredEmail = false
+      this.password = ''
     },
-    visibleToggle() {
-      this.passwordVisible = !this.passwordVisible;
+    visibleToggle () {
+      this.passwordVisible = !this.passwordVisible
     },
-    isVailidMail(email) {
-      return String(email) //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+    isVailidMail (email) {
+      return String(email) // https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
         .toLowerCase()
         .match(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
+        )
     },
-    keyDown(event) {
+    keyDown (event) {
       if (event.keyCode === 13) {
-        //handle enter press
-        this.login();
+        // handle enter press
+        this.login()
       }
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

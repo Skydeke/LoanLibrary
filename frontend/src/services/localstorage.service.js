@@ -1,27 +1,27 @@
 class LocalStorage {
-  writeAuth(token) {
-    localStorage.setItem("isLogedIn", "true");
-    localStorage.setItem("token", token);
+  writeAuth (token) {
+    localStorage.setItem('isLogedIn', 'true')
+    localStorage.setItem('token', token)
   }
 
-  readAuth() {
-    let state = localStorage.getItem("isLogedIn");
+  readAuth () {
+    const state = localStorage.getItem('isLogedIn')
     if (state === undefined || state === null) {
-      return false;
+      return false
     }
-    return state;
+    return state
   }
 
-  deleteAuth() {
-    localStorage.removeItem("isLogedIn");
-    localStorage.removeItem("token");
+  deleteAuth () {
+    localStorage.removeItem('isLogedIn')
+    localStorage.removeItem('token')
   }
 
-  getToken() {
-    return localStorage.getItem("token");
+  getToken () {
+    return localStorage.getItem('token')
   }
 }
 
-const LOCALSTORAGE_INSTANCE = new LocalStorage();
+const LOCALSTORAGE_INSTANCE = new LocalStorage()
 
-export { LOCALSTORAGE_INSTANCE };
+export { LOCALSTORAGE_INSTANCE }

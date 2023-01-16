@@ -37,65 +37,65 @@
 </template>
 
 <script>
-import { LOCALSTORAGE_INSTANCE } from "@/services/localstorage.service.js";
+import { LOCALSTORAGE_INSTANCE } from '@/services/localstorage.service.js'
 
 export default {
-  name: "NavigitonBar",
-  emits: ["sidebarToggle"],
-  data() {
-    let backendToken = LOCALSTORAGE_INSTANCE.getToken();
+  name: 'NavigitonBar',
+  emits: ['sidebar-toggle'],
+  data () {
+    const backendToken = LOCALSTORAGE_INSTANCE.getToken()
     if (backendToken != null) {
-      let kundenToken = JSON.parse(atob(backendToken.split(".")[1]));
-      let encodedName = encodeURIComponent(
+      const kundenToken = JSON.parse(atob(backendToken.split('.')[1]))
+      const encodedName = encodeURIComponent(
         kundenToken.Vorname +
-          " " +
+          ' ' +
           kundenToken.ZweiterVorname +
-          " " +
+          ' ' +
           kundenToken.Nachname
-      );
-      console.log(kundenToken);
-      return { openMenu: false, encodedName: encodedName };
+      )
+      console.log(kundenToken)
+      return { openMenu: false, encodedName }
     }
-    return { openMenu: false, encodedName: "Error Man" };
+    return { openMenu: false, encodedName: 'Error Man' }
   },
   computed: {
-    //computed property always executes, when our values change, the values gets chaced until it is changed
-    isLogedIn() {
-      return this.$store.getters.isLogedIn;
+    // computed property always executes, when our values change, the values gets chaced until it is changed
+    isLogedIn () {
+      return this.$store.getters.isLogedIn
     }
   },
-  updated() {
-    let backendToken = LOCALSTORAGE_INSTANCE.getToken();
+  updated () {
+    const backendToken = LOCALSTORAGE_INSTANCE.getToken()
     if (backendToken != null) {
-      let kundenToken = JSON.parse(atob(backendToken.split(".")[1]));
-      let encodedName = encodeURIComponent(
+      const kundenToken = JSON.parse(atob(backendToken.split('.')[1]))
+      const encodedName = encodeURIComponent(
         kundenToken.Vorname +
-          " " +
+          ' ' +
           kundenToken.ZweiterVorname +
-          " " +
+          ' ' +
           kundenToken.Nachname
-      );
-      console.log(kundenToken);
-      this.encodedName = encodedName;
+      )
+      console.log(kundenToken)
+      this.encodedName = encodedName
     }
   },
   methods: {
-    triggerMenu() {
-      this.openMenu = !this.openMenu;
+    triggerMenu () {
+      this.openMenu = !this.openMenu
     },
-    logout() {
-      LOCALSTORAGE_INSTANCE.deleteAuth();
-      this.$store.commit("logout");
-      this.triggerMenu();
+    logout () {
+      LOCALSTORAGE_INSTANCE.deleteAuth()
+      this.$store.commit('logout')
+      this.triggerMenu()
     },
-    goHome() {
-      this.$router.push({ name: "home" });
+    goHome () {
+      this.$router.push({ name: 'home' })
     },
-    toggleSidebar() {
-      this.$emit("sidebarToggle");
+    toggleSidebar () {
+      this.$emit('sidebar-toggle')
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

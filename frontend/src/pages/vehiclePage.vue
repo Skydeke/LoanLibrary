@@ -22,73 +22,73 @@
 </template>
 
 <script>
-import axios from "axios";
-import DetailedCarComponent from "@/components/DetailedCarComponent.vue";
-import Datepicker from "@vuepic/vue-datepicker";
-import "@vuepic/vue-datepicker/dist/main.css";
-import { LOCALSTORAGE_INSTANCE } from "@/services/localstorage.service";
+import axios from 'axios'
+import DetailedCarComponent from '@/components/DetailedCarComponent.vue'
+import Datepicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
+import { LOCALSTORAGE_INSTANCE } from '@/services/localstorage.service'
 
 export default {
-  name: "VehiclePage",
+  name: 'VehiclePage',
   components: { DetailedCarComponent, Datepicker },
-  data() {
-    return { id: "", carmod: {}, startdate: null, enddate: null };
+  data () {
+    return { id: '', carmod: {}, startdate: null, enddate: null }
   },
-  created() {
-    this.id = this.$route.params.id;
-    let carProm = axios
-      .get(this.$hostname + "/automodell/" + this.id)
+  created () {
+    this.id = this.$route.params.id
+    const carProm = axios
+      .get(this.$hostname + '/automodell/' + this.id)
       .then((response) => {
-        this.carmod = response.data;
+        this.carmod = response.data
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
     axios
-      .get(this.$hostname + "/automodell/ausstattungen/" + this.id)
+      .get(this.$hostname + '/automodell/ausstattungen/' + this.id)
       .then((response) => {
-        this.carmod.ausstattung = response.data;
+        this.carmod.ausstattung = response.data
       })
-      .catch((error) => console.log(error));
-    this.carmod = carProm;
+      .catch((error) => console.log(error))
+    this.carmod = carProm
   },
   methods: {
-    reserve() {
+    reserve () {
       if (!this.isLogedIn()) {
-        this.$router.push({ name: "login" });
+        this.$router.push({ name: 'login' })
       } else {
         if (this.enddate !== null && this.startdate !== null) {
           console.log(
-            "Creating Reservierung on " +
+            'Creating Reservierung on ' +
               this.startdate +
-              " " +
-              " until " +
+              ' ' +
+              ' until ' +
               this.enddate
-          );
-          let backendToken = LOCALSTORAGE_INSTANCE.getToken();
-          let kundenNr = JSON.parse(atob(backendToken.split(".")[1])).KundenNr;
+          )
+          const backendToken = LOCALSTORAGE_INSTANCE.getToken()
+          const kundenNr = JSON.parse(atob(backendToken.split('.')[1])).KundenNr
           this.bill = {
             geplanterStart: this.startdate,
             geplantesEnde: this.enddate,
             AutomodellNr: this.id,
             KundenNr: kundenNr,
             AusleihvorgangNr: null
-          };
+          }
           axios
-            .post(this.$hostname + "/reservation", this.bill)
+            .post(this.$hostname + '/reservation', this.bill)
             .then((response) => {
-              console.log("Creating Reservierung: " + response.toString());
-              this.$router.push({ name: "reservations" });
+              console.log('Creating Reservierung: ' + response.toString())
+              this.$router.push({ name: 'reservations' })
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.log(error))
         } else {
-          console.log("Not all Info Present to create Reservierung.");
+          console.log('Not all Info Present to create Reservierung.')
         }
       }
     },
-    isLogedIn() {
-      return this.$store.getters.isLogedIn;
+    isLogedIn () {
+      return this.$store.getters.isLogedIn
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

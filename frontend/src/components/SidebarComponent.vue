@@ -9,22 +9,22 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "SidebarComponent",
-  data() {
-    return { cars: [] };
+  name: 'SidebarComponent',
+  data () {
+    return { cars: [] }
   },
-  mounted() {
+  mounted () {
     axios
-      .get(this.$hostname + "/automodells")
+      .get(this.$hostname + '/automodells')
       .then((response) => {
-        this.cars = response.data;
+        this.cars = response.data
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -5,15 +5,15 @@
 </template>
 
 <script>
-import SignupComponent from "@/components/SignupComponent.vue";
+import SignupComponent from '@/components/SignupComponent.vue'
 export default {
-  name: "SignupPage",
+  name: 'SignupPage',
   components: { SignupComponent },
-  emits: ["sidebarDisable"],
-  mounted() {
-    this.$emit("sidebarDisable");
+  emits: ['sidebar-disable'],
+  mounted () {
+    this.$emit('sidebar-disable')
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

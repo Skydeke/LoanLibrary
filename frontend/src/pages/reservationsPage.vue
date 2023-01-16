@@ -11,41 +11,41 @@
 </template>
 
 <script>
-import ReservationComponent from "@/components/ReservationComponent.vue";
-import axios from "axios";
-import { LOCALSTORAGE_INSTANCE } from "@/services/localstorage.service";
+import ReservationComponent from '@/components/ReservationComponent.vue'
+import axios from 'axios'
+import { LOCALSTORAGE_INSTANCE } from '@/services/localstorage.service'
 
 export default {
-  name: "ReservationsPage",
+  name: 'ReservationsPage',
   components: { ReservationComponent },
-  data() {
-    return { reservations: [] };
+  data () {
+    return { reservations: [] }
   },
-  mounted() {
-    let access_token = LOCALSTORAGE_INSTANCE.getToken();
+  mounted () {
+    const accessToken = LOCALSTORAGE_INSTANCE.getToken()
     axios
-      .get(this.$hostname + "/reservations", {
+      .get(this.$hostname + '/reservations', {
         headers: {
-          Authorization: `${access_token}`
+          Authorization: `${accessToken}`
         }
       })
       .then((response) => {
-        this.reservations = response.data;
-        console.log(response.data);
+        this.reservations = response.data
+        console.log(response.data)
         if (response.status === 403) {
-          LOCALSTORAGE_INSTANCE.deleteAuth();
-          this.$store.commit("logout");
-          this.$router.push({ name: "login" });
+          LOCALSTORAGE_INSTANCE.deleteAuth()
+          this.$store.commit('logout')
+          this.$router.push({ name: 'login' })
         }
       })
       .catch((error) => {
-        console.log(error);
-        LOCALSTORAGE_INSTANCE.deleteAuth();
-        this.$store.commit("logout");
-        this.$router.push({ name: "login" });
-      });
+        console.log(error)
+        LOCALSTORAGE_INSTANCE.deleteAuth()
+        this.$store.commit('logout')
+        this.$router.push({ name: 'login' })
+      })
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

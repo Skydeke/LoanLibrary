@@ -25,58 +25,63 @@
 </template>
 
 <script>
-import DetailedCarComponent from "@/components/DetailedCarComponent.vue";
-import axios from "axios";
-import Datepicker from "@vuepic/vue-datepicker";
-import "@vuepic/vue-datepicker/dist/main.css";
+import DetailedCarComponent from '@/components/DetailedCarComponent.vue'
+import axios from 'axios'
+import Datepicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 export default {
-  name: "ReservationComponent",
+  name: 'ReservationComponent',
   components: { DetailedCarComponent, Datepicker },
-  props: ["reservation"],
-  data() {
-    this.id = this.reservation.AutomodellNr;
-    let carPr = axios
-      .get(this.$hostname + "/automodell/" + this.id)
+  props: {
+    reservation: {
+      type: Object,
+      default: null
+    }
+  },
+  data () {
+    this.id = this.reservation.AutomodellNr
+    const carPr = axios
+      .get(this.$hostname + '/automodell/' + this.id)
       .then((response) => {
-        this.carm = response.data;
+        this.carm = response.data
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
     axios
-      .get(this.$hostname + "/automodell/ausstattungen/" + this.id)
+      .get(this.$hostname + '/automodell/ausstattungen/' + this.id)
       .then((response) => {
-        this.carm.ausstattung = response.data;
+        this.carm.ausstattung = response.data
       })
-      .catch((error) => console.log(error));
-    let dbStartD = new Date(Date.parse(this.reservation.geplanterStart));
-    let dbEndD = new Date(Date.parse(this.reservation.geplantesEnde));
-    //let timeOffsetInMS = dbStartD.getTimezoneOffset() * 60000;
+      .catch((error) => console.log(error))
+    const dbStartD = new Date(Date.parse(this.reservation.geplanterStart))
+    const dbEndD = new Date(Date.parse(this.reservation.geplantesEnde))
+    // let timeOffsetInMS = dbStartD.getTimezoneOffset() * 60000;
 
-    let localStart = new Date(dbStartD.getTime());
-    //localStart.setTime(localStart.getTime() - timeOffsetInMS);
-    let localEnd = new Date(dbEndD.getTime());
-    //localEnd.setTime(localEnd.getTime() - timeOffsetInMS);
-    console.log("start: " + dbStartD.getTimezoneOffset());
-    return { carm: carPr, startTime: localStart, endTime: localEnd };
+    const localStart = new Date(dbStartD.getTime())
+    // localStart.setTime(localStart.getTime() - timeOffsetInMS);
+    const localEnd = new Date(dbEndD.getTime())
+    // localEnd.setTime(localEnd.getTime() - timeOffsetInMS);
+    console.log('start: ' + dbStartD.getTimezoneOffset())
+    return { carm: carPr, startTime: localStart, endTime: localEnd }
   },
   methods: {
-    delReservation() {
+    delReservation () {
       axios
-        .delete(this.$hostname + "/reservation/" + this.reservation.ResNr)
+        .delete(this.$hostname + '/reservation/' + this.reservation.ResNr)
         .then((response) => {
           if (response.status !== 200) {
-            console.log("An Error happend deleting the reservation.");
+            console.log('An Error happend deleting the reservation.')
           } else {
             console.log(
-              "Deleted Reservation with id: " + this.reservation.ResNr
-            );
-            this.$el.parentNode.removeChild(this.$el);
+              'Deleted Reservation with id: ' + this.reservation.ResNr
+            )
+            this.$el.parentNode.removeChild(this.$el)
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

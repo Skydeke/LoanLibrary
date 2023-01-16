@@ -14,31 +14,32 @@
 </template>
 
 <script>
-import CarComponent from "../components/CarComponent.vue";
-import axios from "axios";
+import CarComponent from '../components/CarComponent.vue'
+import axios from 'axios'
 
 export default {
-  name: "HomePage",
+  name: 'HomePage',
   components: { CarComponent },
-  data() {
-    return { cars: [] };
+  data () {
+    return { cars: [] }
   },
-  mounted() {
+  mounted () {
     axios
-      .get(this.$hostname + "/automodells")
+      .get(this.$hostname + '/automodells')
       .then((response) => {
-        this.cars = response.data;
+        this.cars = response.data
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
   },
-  updated() {
-    if (this.$route.hash)
+  updated () {
+    if (this.$route.hash) {
       this.$scrollTo(this.$route.hash, 500, {
-        easing: "ease-in-out",
+        easing: 'ease-in-out',
         offset: -150
-      }); //offset becuase of the navbar
+      })
+    } // offset becuase of the navbar
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

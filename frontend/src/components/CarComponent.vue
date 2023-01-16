@@ -14,18 +14,23 @@
 
 <script>
 export default {
-  name: "CarComponent",
-  props: ["car"],
+  name: 'CarComponent',
+  props: {
+    car: {
+      type: Object,
+      default: null
+    }
+  },
   methods: {
-    redirect() {
+    redirect () {
       this.$router.push({
-        name: "vehicle",
+        name: 'vehicle',
         params: { id: this.car.AutomodellNr }
-      }); //redirect to vehicle with specific name. The attribute name refers to the name specified in router/index.js
-      //$router is a global varible
+      }) // redirect to vehicle with specific name. The attribute name refers to the name specified in router/index.js
+      // $router is a global varible
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

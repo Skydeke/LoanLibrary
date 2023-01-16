@@ -161,138 +161,138 @@
 </template>
 
 <script>
-import axios from "axios";
-import { LOCALSTORAGE_INSTANCE } from "@/services/localstorage.service.js";
-const zxcvbn = require("zxcvbn"); //libary to validate password strength
+import axios from 'axios'
+import { LOCALSTORAGE_INSTANCE } from '@/services/localstorage.service.js'
+import zxcvbn from 'zxcvbn' // libary to validate password strength
 
 export default {
-  name: "SignupComponent",
+  name: 'SignupComponent',
   data: () => {
     return {
       passwordVisible: false,
       passwordRepeatVisible: false,
-      passwordRepeat: "",
+      passwordRepeat: '',
       showError: false,
-      errorMsg: "",
+      errorMsg: '',
       user: {
-        email: "",
-        password: "",
-        firstName: "",
-        secondName: "",
-        lastName: "",
-        location: "",
-        plz: "",
-        street: "",
-        houseNumber: ""
+        email: '',
+        password: '',
+        firstName: '',
+        secondName: '',
+        lastName: '',
+        location: '',
+        plz: '',
+        street: '',
+        houseNumber: ''
       }
-    };
+    }
   },
   computed: {
-    passwordStrength() {
-      return zxcvbn(this.user.password).score;
+    passwordStrength () {
+      return zxcvbn(this.user.password).score
     }
   },
   methods: {
-    register() {
+    register () {
       if (!this.user.firstName) {
-        this.showErrorMessage("Name eingeben!");
-        return;
+        this.showErrorMessage('Name eingeben!')
+        return
       }
       if (!this.user.lastName) {
-        this.showErrorMessage("Nachname eingeben!");
-        return;
+        this.showErrorMessage('Nachname eingeben!')
+        return
       }
 
       if (!this.user.location) {
-        this.showErrorMessage("Ort eingeben");
-        return;
+        this.showErrorMessage('Ort eingeben')
+        return
       }
       if (!this.user.plz) {
-        this.showErrorMessage("PLZ eingaben!");
-        return;
+        this.showErrorMessage('PLZ eingaben!')
+        return
       }
       if (!this.isValidPLZ(this.user.plz)) {
-        this.showErrorMessage("PLZ ungungültig!");
-        return;
+        this.showErrorMessage('PLZ ungungültig!')
+        return
       }
       if (!this.user.street) {
-        this.showErrorMessage("Strasse eingeben!");
-        return;
+        this.showErrorMessage('Strasse eingeben!')
+        return
       }
       if (!this.user.houseNumber) {
-        this.showErrorMessage("Hausnummer eingeben!");
-        return;
+        this.showErrorMessage('Hausnummer eingeben!')
+        return
       }
 
       if (!this.user.email) {
-        this.showErrorMessage("E-Mail eingeben!");
-        return;
+        this.showErrorMessage('E-Mail eingeben!')
+        return
       }
 
       if (!this.user.password) {
-        this.showErrorMessage("Passwort wiederholen!");
-        return;
+        this.showErrorMessage('Passwort wiederholen!')
+        return
       }
       if (!this.passwordRepeat) {
-        this.showErrorMessage("Passwort wiederholen!");
-        return;
+        this.showErrorMessage('Passwort wiederholen!')
+        return
       }
       if (!this.isVailidMail(this.user.email)) {
-        this.showErrorMessage("E-Mail ist ungültig");
-        return;
+        this.showErrorMessage('E-Mail ist ungültig')
+        return
       }
       if (this.passwordStrength < 4) {
-        this.showErrorMessage("Das Passwort ist zu schwach");
-        return;
+        this.showErrorMessage('Das Passwort ist zu schwach')
+        return
       }
-      if (this.user.password != this.passwordRepeat) {
-        this.showErrorMessage("Die Passwörter stimmen nicht überein");
-        return;
+      if (this.user.password !== this.passwordRepeat) {
+        this.showErrorMessage('Die Passwörter stimmen nicht überein')
+        return
       }
       axios
-        .post(this.$hostname + "/registration", this.user)
+        .post(this.$hostname + '/registration', this.user)
         .then((response) => {
-          LOCALSTORAGE_INSTANCE.writeAuth(response.data.token);
-          this.$store.commit("login"); //mutates the isLogin state inside store
-          this.$router.push({ name: "home" });
+          LOCALSTORAGE_INSTANCE.writeAuth(response.data.token)
+          this.$store.commit('login') // mutates the isLogin state inside store
+          this.$router.push({ name: 'home' })
         })
         .catch((error) => {
-          console.log(error);
-          window.alert("Someting went wrong!");
-        });
+          console.log(error)
+          window.alert('Someting went wrong!')
+        })
     },
-    isValidPLZ(plz) {
-      return plz > 10000 && plz < 100000;
+    isValidPLZ (plz) {
+      return plz > 10000 && plz < 100000
     },
-    editMail() {
-      this.enteredEmail = false;
-      this.password = "";
+    editMail () {
+      this.enteredEmail = false
+      this.password = ''
     },
-    visibleToggle() {
-      this.passwordVisible = !this.passwordVisible;
+    visibleToggle () {
+      this.passwordVisible = !this.passwordVisible
     },
-    visibleToggleRepeated() {
-      this.passwordRepeatVisible = !this.passwordRepeatVisible;
+    visibleToggleRepeated () {
+      this.passwordRepeatVisible = !this.passwordRepeatVisible
     },
-    isVailidMail(email) {
-      return String(email) //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+    isVailidMail (email) {
+      return String(email) // https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
         .toLowerCase()
         .match(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
+        )
     },
-    keyDown(event) {
+    keyDown (event) {
       if (event.keyCode === 13) {
-        //handle enter press
-        this.register();
+        // handle enter press
+        this.register()
       }
     },
-    showErrorMessage(msg) {
-      this.showError = true;
-      this.errorMsg = msg;
+    showErrorMessage (msg) {
+      this.showError = true
+      this.errorMsg = msg
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -1,31 +1,31 @@
 <template>
   <div>
-    <NaviagitonBar @sidebarToggle="toggleSidebar"></NaviagitonBar>
+    <NaviagitonBar @sidebar-toggle="toggleSidebar"></NaviagitonBar>
     <!-- Custom Event-->
     <SidebarComponent v-if="showSidebar"></SidebarComponent>
-    <RouterView @sidebarDisable="sidebarDisable"> </RouterView>
+    <RouterView @sidebar-disable="sidebarDisable"> </RouterView>
   </div>
 </template>
 
 <script>
-import NaviagitonBar from "./components/NavigationBar.vue";
-import SidebarComponent from "@/components/SidebarComponent.vue";
+import NaviagitonBar from './components/NavigationBar.vue'
+import SidebarComponent from '@/components/SidebarComponent.vue'
 
 export default {
-  name: "App",
+  name: 'App',
   components: { NaviagitonBar, SidebarComponent },
-  data() {
-    return { showSidebar: false };
+  data () {
+    return { showSidebar: false }
   },
   methods: {
-    toggleSidebar() {
-      this.showSidebar = !this.showSidebar;
+    toggleSidebar () {
+      this.showSidebar = !this.showSidebar
     },
-    sidebarDisable() {
-      this.showSidebar = false;
+    sidebarDisable () {
+      this.showSidebar = false
     }
   }
-};
+}
 </script>
 
 <style>

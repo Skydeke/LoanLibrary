@@ -55,10 +55,15 @@
 
 <script>
 export default {
-  name: "DetailedCarComponent",
-  props: ["carmod"],
+  name: 'DetailedCarComponent',
+  props: {
+    carmod: {
+      type: Object,
+      default: null
+    }
+  },
   methods: {}
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

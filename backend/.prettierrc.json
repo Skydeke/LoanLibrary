@@ -6,6 +6,6 @@
   "singleQuote": true,
   "trailingComma": "none",
   "bracketSpacing": true,
-  "arrowParens": "always",
+  "arrowParens": "avoid",
   "rangeStart": 0
 }
