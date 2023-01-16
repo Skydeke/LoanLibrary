@@ -11,7 +11,6 @@ module.exports = {
   },
   plugins: ['vue'],
   rules: {
-    
-      "space-before-function-paren": ["error", "always"]
+    'space-before-function-paren': ['error', 'always']
   }
 }

@@ -32,7 +32,7 @@ app.use(
   })
 )
 
-function verifyToken(req, res, next) {
+function verifyToken (req, res, next) {
   // middleware function
   const token = req.headers.authorization
   if (token !== undefined) {
