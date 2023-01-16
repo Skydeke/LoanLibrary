@@ -188,12 +188,12 @@ export default {
     }
   },
   computed: {
-    passwordStrength () {
+    passwordStrength() {
       return zxcvbn(this.user.password).score
     }
   },
   methods: {
-    register () {
+    register() {
       if (!this.user.firstName) {
         this.showErrorMessage('Name eingeben!')
         return
@@ -261,33 +261,33 @@ export default {
           window.alert('Someting went wrong!')
         })
     },
-    isValidPLZ (plz) {
+    isValidPLZ(plz) {
       return plz > 10000 && plz < 100000
     },
-    editMail () {
+    editMail() {
       this.enteredEmail = false
       this.password = ''
     },
-    visibleToggle () {
+    visibleToggle() {
       this.passwordVisible = !this.passwordVisible
     },
-    visibleToggleRepeated () {
+    visibleToggleRepeated() {
       this.passwordRepeatVisible = !this.passwordRepeatVisible
     },
-    isVailidMail (email) {
+    isVailidMail(email) {
       return String(email) // https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
         .toLowerCase()
         .match(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         )
     },
-    keyDown (event) {
+    keyDown(event) {
       if (event.keyCode === 13) {
         // handle enter press
         this.register()
       }
     },
-    showErrorMessage (msg) {
+    showErrorMessage(msg) {
       this.showError = true
       this.errorMsg = msg
     }

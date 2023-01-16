@@ -1,10 +1,10 @@
 class LocalStorage {
-  writeAuth (token) {
+  writeAuth(token) {
     localStorage.setItem('isLogedIn', 'true')
     localStorage.setItem('token', token)
   }
 
-  readAuth () {
+  readAuth() {
     const state = localStorage.getItem('isLogedIn')
     if (state === undefined || state === null) {
       return false
@@ -12,12 +12,12 @@ class LocalStorage {
     return state
   }
 
-  deleteAuth () {
+  deleteAuth() {
     localStorage.removeItem('isLogedIn')
     localStorage.removeItem('token')
   }
 
-  getToken () {
+  getToken() {
     return localStorage.getItem('token')
   }
 }

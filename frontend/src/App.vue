@@ -14,14 +14,14 @@ import SidebarComponent from '@/components/SidebarComponent.vue'
 export default {
   name: 'App',
   components: { NaviagitonBar, SidebarComponent },
-  data () {
+  data() {
     return { showSidebar: false }
   },
   methods: {
-    toggleSidebar () {
+    toggleSidebar() {
       this.showSidebar = !this.showSidebar
     },
-    sidebarDisable () {
+    sidebarDisable() {
       this.showSidebar = false
     }
   }

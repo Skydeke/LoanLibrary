@@ -20,10 +20,10 @@ import axios from 'axios'
 export default {
   name: 'HomePage',
   components: { CarComponent },
-  data () {
+  data() {
     return { cars: [] }
   },
-  mounted () {
+  mounted() {
     axios
       .get(this.$hostname + '/automodells')
       .then((response) => {
@@ -31,7 +31,7 @@ export default {
       })
       .catch((error) => console.log(error))
   },
-  updated () {
+  updated() {
     if (this.$route.hash) {
       this.$scrollTo(this.$route.hash, 500, {
         easing: 'ease-in-out',

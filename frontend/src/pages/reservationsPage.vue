@@ -18,10 +18,10 @@ import { LOCALSTORAGE_INSTANCE } from '@/services/localstorage.service'
 export default {
   name: 'ReservationsPage',
   components: { ReservationComponent },
-  data () {
+  data() {
     return { reservations: [] }
   },
-  mounted () {
+  mounted() {
     const accessToken = LOCALSTORAGE_INSTANCE.getToken()
     axios
       .get(this.$hostname + '/reservations', {

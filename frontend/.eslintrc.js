@@ -11,6 +11,13 @@ module.exports = {
   },
   plugins: ['vue'],
   rules: {
-    'space-before-function-paren': ['error', 'always']
+    'space-before-function-paren': [
+      'error',
+      {
+        anonymous: 'always',
+        named: 'never',
+        asyncArrow: 'never'
+      }
+    ]
   }
 }

@@ -10,7 +10,7 @@ export default {
   name: 'LoginPage',
   components: { LoginComponent },
   emits: ['sidebar-disable'],
-  mounted () {
+  mounted() {
     this.$emit('sidebar-disable')
   }
 }

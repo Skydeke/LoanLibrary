@@ -31,10 +31,10 @@ import { LOCALSTORAGE_INSTANCE } from '@/services/localstorage.service'
 export default {
   name: 'VehiclePage',
   components: { DetailedCarComponent, Datepicker },
-  data () {
+  data() {
     return { id: '', carmod: {}, startdate: null, enddate: null }
   },
-  created () {
+  created() {
     this.id = this.$route.params.id
     const carProm = axios
       .get(this.$hostname + '/automodell/' + this.id)
@@ -51,7 +51,7 @@ export default {
     this.carmod = carProm
   },
   methods: {
-    reserve () {
+    reserve() {
       if (!this.isLogedIn()) {
         this.$router.push({ name: 'login' })
       } else {
@@ -84,7 +84,7 @@ export default {
         }
       }
     },
-    isLogedIn () {
+    isLogedIn() {
       return this.$store.getters.isLogedIn
     }
   }

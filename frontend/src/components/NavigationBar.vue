@@ -42,7 +42,7 @@ import { LOCALSTORAGE_INSTANCE } from '@/services/localstorage.service.js'
 export default {
   name: 'NavigitonBar',
   emits: ['sidebar-toggle'],
-  data () {
+  data() {
     const backendToken = LOCALSTORAGE_INSTANCE.getToken()
     if (backendToken != null) {
       const kundenToken = JSON.parse(atob(backendToken.split('.')[1]))
@@ -60,11 +60,11 @@ export default {
   },
   computed: {
     // computed property always executes, when our values change, the values gets chaced until it is changed
-    isLogedIn () {
+    isLogedIn() {
       return this.$store.getters.isLogedIn
     }
   },
-  updated () {
+  updated() {
     const backendToken = LOCALSTORAGE_INSTANCE.getToken()
     if (backendToken != null) {
       const kundenToken = JSON.parse(atob(backendToken.split('.')[1]))
@@ -80,18 +80,18 @@ export default {
     }
   },
   methods: {
-    triggerMenu () {
+    triggerMenu() {
       this.openMenu = !this.openMenu
     },
-    logout () {
+    logout() {
       LOCALSTORAGE_INSTANCE.deleteAuth()
       this.$store.commit('logout')
       this.triggerMenu()
     },
-    goHome () {
+    goHome() {
       this.$router.push({ name: 'home' })
     },
-    toggleSidebar () {
+    toggleSidebar() {
       this.$emit('sidebar-toggle')
     }
   }

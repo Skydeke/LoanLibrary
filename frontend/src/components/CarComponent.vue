@@ -22,7 +22,7 @@ export default {
     }
   },
   methods: {
-    redirect () {
+    redirect() {
       this.$router.push({
         name: 'vehicle',
         params: { id: this.car.AutomodellNr }

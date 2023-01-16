@@ -18,10 +18,10 @@ import { LOCALSTORAGE_INSTANCE } from '@/services/localstorage.service'
 export default {
   name: 'BillsPage',
   components: { BillComponent },
-  data () {
+  data() {
     return { bills: [] }
   },
-  mounted () {
+  mounted() {
     const accessToken = LOCALSTORAGE_INSTANCE.getToken()
     axios
       .get(this.$hostname + '/bills', {

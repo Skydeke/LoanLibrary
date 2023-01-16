@@ -64,7 +64,7 @@ export default {
     }
   },
   methods: {
-    login () {
+    login() {
       if (!this.enteredEmail) {
         if (this.isVailidMail(this.email)) {
           this.enteredEmail = true
@@ -93,21 +93,21 @@ export default {
         }
       }
     },
-    editMail () {
+    editMail() {
       this.enteredEmail = false
       this.password = ''
     },
-    visibleToggle () {
+    visibleToggle() {
       this.passwordVisible = !this.passwordVisible
     },
-    isVailidMail (email) {
+    isVailidMail(email) {
       return String(email) // https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
         .toLowerCase()
         .match(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         )
     },
-    keyDown (event) {
+    keyDown(event) {
       if (event.keyCode === 13) {
         // handle enter press
         this.login()

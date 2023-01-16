@@ -84,7 +84,7 @@ export default {
       default: null
     }
   },
-  data () {
+  data() {
     this.id = this.bill.AutomodellNr
     const carPr = axios
       .get(this.$hostname + '/automodell/' + this.id)

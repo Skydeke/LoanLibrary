@@ -10,7 +10,7 @@ export default {
   name: 'SignupPage',
   components: { SignupComponent },
   emits: ['sidebar-disable'],
-  mounted () {
+  mounted() {
     this.$emit('sidebar-disable')
   }
 }

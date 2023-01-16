@@ -13,10 +13,10 @@ import axios from 'axios'
 
 export default {
   name: 'SidebarComponent',
-  data () {
+  data() {
     return { cars: [] }
   },
-  mounted () {
+  mounted() {
     axios
       .get(this.$hostname + '/automodells')
       .then((response) => {

@@ -39,7 +39,7 @@ export default {
       default: null
     }
   },
-  data () {
+  data() {
     this.id = this.reservation.AutomodellNr
     const carPr = axios
       .get(this.$hostname + '/automodell/' + this.id)
@@ -65,7 +65,7 @@ export default {
     return { carm: carPr, startTime: localStart, endTime: localEnd }
   },
   methods: {
-    delReservation () {
+    delReservation() {
       axios
         .delete(this.$hostname + '/reservation/' + this.reservation.ResNr)
         .then((response) => {
