@@ -1,13 +1,12 @@
-
 class LocalStorage {
   writeAuth(token) {
     localStorage.setItem("isLogedIn", "true");
-    localStorage.setItem('token', token)
+    localStorage.setItem("token", token);
   }
 
   readAuth() {
     let state = localStorage.getItem("isLogedIn");
-    if (state === undefined || state === null){
+    if (state === undefined || state === null) {
       return false;
     }
     return state;
@@ -15,10 +14,10 @@ class LocalStorage {
 
   deleteAuth() {
     localStorage.removeItem("isLogedIn");
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
   }
 
-  getToken(){
+  getToken() {
     return localStorage.getItem("token");
   }
 }

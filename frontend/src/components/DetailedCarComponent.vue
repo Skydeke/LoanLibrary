@@ -1,13 +1,13 @@
 <template>
   <div>
-    <img :src="this.$hostname + '/image/' + carmod.imagefile"/>
-    <h1> {{ carmod.Hersteller }} {{ carmod.Modellbezeichnung }}</h1>
+    <img :src="$hostname + '/image/' + carmod.imagefile" />
+    <h1>{{ carmod.Hersteller }} {{ carmod.Modellbezeichnung }}</h1>
     <div class="container">
       <h3>Grundinformationen</h3>
       <p>
-        Dieser {{ carmod.Typ }} mit {{ carmod.Sitzplaetze }} Sitzplätzen kann zu einem Preis von
-        {{ carmod.PreisProTag }} Euro pro Tag und einer Gebühr von {{ carmod.PreisProKm }} Euro
-        pro Kilometer ausgeliehen werden.
+        Dieser {{ carmod.Typ }} mit {{ carmod.Sitzplaetze }} Sitzplätzen kann zu
+        einem Preis von {{ carmod.PreisProTag }} Euro pro Tag und einer Gebühr
+        von {{ carmod.PreisProKm }} Euro pro Kilometer ausgeliehen werden.
       </p>
       <h3>Details</h3>
       <table border="1" width="30%">
@@ -43,11 +43,11 @@
     </div>
     <div id="cont">
       <h2>Grundausstattung</h2>
-      <p>
-        In diesem Automodell sind beim Ausleihen mindestens verbaut:
-      </p>
+      <p>In diesem Automodell sind beim Ausleihen mindestens verbaut:</p>
       <ul>
-        <li v-for="ausst in carmod.ausstattung" :key="ausst.AusleihNr"> {{ ausst.Bezeichnung }}</li>
+        <li v-for="ausst in carmod.ausstattung" :key="ausst.AusleihNr">
+          {{ ausst.Bezeichnung }}
+        </li>
       </ul>
     </div>
   </div>
@@ -55,11 +55,10 @@
 
 <script>
 export default {
-  name: 'DetailedCarComponent',
-  props: ['carmod'],
+  name: "DetailedCarComponent",
+  props: ["carmod"],
   methods: {}
-}
-
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

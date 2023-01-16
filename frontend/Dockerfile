@@ -12,8 +12,8 @@ COPY . .
 
 RUN npm run build
 
-#Nginx for azure
-FROM nginx:stable-alpine as production-stage
+#docker image is only built from the last state, from means that a new stage beginns
+FROM nginx:stable-alpine as production-stage 
 COPY --from=build-stage /usr/src/app/dist /usr/share/nginx/html 
 
 COPY nginx/nginx.conf /etc/nginx/nginx.conf

@@ -1,6 +1,6 @@
 FROM node:16
 
-# Create app directory
+# Create app directory, similar to cd all commands are relative to the workdir
 WORKDIR /usr/src/app
 
 #Install app dependencies

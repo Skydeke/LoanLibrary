@@ -9,9 +9,9 @@
         <td>
           <DetailedCarComponent :carmod="carm"></DetailedCarComponent>
         </td>
-        <td style="vertical-align: top; text-align: left;">
+        <td style="vertical-align: top; text-align: left">
           <div class="container">
-            <p>Ein Autoexemplar wird ihnen von </p>
+            <p>Ein Autoexemplar wird ihnen von</p>
             <Datepicker v-model="startTime" :readonly="true"></Datepicker>
             <p>bis</p>
             <Datepicker v-model="endTime" :readonly="true"></Datepicker>
@@ -27,33 +27,27 @@
 <script>
 import DetailedCarComponent from "@/components/DetailedCarComponent.vue";
 import axios from "axios";
-import Datepicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css'
+import Datepicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
 
 export default {
-  name: 'ReservationComponent',
-  components: {DetailedCarComponent, Datepicker},
-  props: ['reservation'],
-  methods: {
-    delReservation(){
-      axios.delete(this.$hostname + '/reservation/' + this.reservation.ResNr).then(response => {
-        if (response.status !== 200){
-          console.log("An Error happend deleting the reservation.")
-        }else {
-          console.log("Deleted Reservation with id: " + this.reservation.ResNr)
-          this.$el.parentNode.removeChild(this.$el);
-        }
-      }).catch(error => console.log(error));
-    }
-  },
+  name: "ReservationComponent",
+  components: { DetailedCarComponent, Datepicker },
+  props: ["reservation"],
   data() {
     this.id = this.reservation.AutomodellNr;
-    let carPr = axios.get(this.$hostname + '/automodell/' + this.id).then(response => {
-      this.carm = response.data;
-    }).catch(error => console.log(error))
-    axios.get(this.$hostname + '/automodell/ausstattungen/' + this.id).then(response => {
-      this.carm.ausstattung = response.data;
-    }).catch(error => console.log(error));
+    let carPr = axios
+      .get(this.$hostname + "/automodell/" + this.id)
+      .then((response) => {
+        this.carm = response.data;
+      })
+      .catch((error) => console.log(error));
+    axios
+      .get(this.$hostname + "/automodell/ausstattungen/" + this.id)
+      .then((response) => {
+        this.carm.ausstattung = response.data;
+      })
+      .catch((error) => console.log(error));
     let dbStartD = new Date(Date.parse(this.reservation.geplanterStart));
     let dbEndD = new Date(Date.parse(this.reservation.geplantesEnde));
     //let timeOffsetInMS = dbStartD.getTimezoneOffset() * 60000;
@@ -62,17 +56,34 @@ export default {
     //localStart.setTime(localStart.getTime() - timeOffsetInMS);
     let localEnd = new Date(dbEndD.getTime());
     //localEnd.setTime(localEnd.getTime() - timeOffsetInMS);
-    console.log("start: " + dbStartD.getTimezoneOffset())
-    return {carm: carPr, startTime: localStart, endTime: localEnd}
+    console.log("start: " + dbStartD.getTimezoneOffset());
+    return { carm: carPr, startTime: localStart, endTime: localEnd };
+  },
+  methods: {
+    delReservation() {
+      axios
+        .delete(this.$hostname + "/reservation/" + this.reservation.ResNr)
+        .then((response) => {
+          if (response.status !== 200) {
+            console.log("An Error happend deleting the reservation.");
+          } else {
+            console.log(
+              "Deleted Reservation with id: " + this.reservation.ResNr
+            );
+            this.$el.parentNode.removeChild(this.$el);
+          }
+        })
+        .catch((error) => console.log(error));
+    }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .blackborder {
-  border-top: solid 2px black;;
-  border-bottom: solid 2px black;;
+  border-top: solid 2px black;
+  border-bottom: solid 2px black;
   border-right: solid 2px black;
   margin: 10px;
 }

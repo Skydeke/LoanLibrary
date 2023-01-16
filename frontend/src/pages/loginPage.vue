@@ -1,21 +1,20 @@
 <template>
-<div>
-  <LoginComponent></LoginComponent>
-</div>
+  <div>
+    <LoginComponent></LoginComponent>
+  </div>
 </template>
 
 <script>
-import LoginComponent from '../components/LoginComponent.vue'
+import LoginComponent from "../components/LoginComponent.vue";
 export default {
-  name: 'loginPage',
-  components:{LoginComponent},
-  emits: ['sidebarDisable'],
-  mounted(){
+  name: "LoginPage",
+  components: { LoginComponent },
+  emits: ["sidebarDisable"],
+  mounted() {
     this.$emit("sidebarDisable");
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>  
-</style>
+<style scoped></style>
